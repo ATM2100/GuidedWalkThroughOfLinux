@@ -290,6 +290,43 @@ In this case, the input is the "textFile.txt" and the output goes to the termina
 
 ## Intermediate
 
+### uname
+The `uname` command is the way to get a lot of system information, such as operating system, kernel version and architecture.
+
+### find
+
+### whoami
+
+### Permissions
+
+#### sudo
+
+#### sudoers
+
+#### passwd and Account creation
+
+### Basic Networking
+
+#### ping
+
+#### ip
+
+### Package manager
+
+#### apt pacman dnf
+
+#### basic apt
+
+### Basic programming
+
+#### bash
+
+#### C, C++, gcc, g++, make
+
+#### Python
+
+### tar
+
 ## Advanced
 
 ## Use Cool Things
