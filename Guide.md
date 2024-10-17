@@ -7,6 +7,8 @@
 
 ##  The Basics  
 
+### History and Ecosystem of Linux
+
 ### Basics of Files and Their Structure
 Before there is anything to talk about in terms of details in Linux, one of the most important notions to grasp is that everything is a file. Files are files, executables are files, folders or directories as they are known on linux are files. The beginning of the linux file system is `/`, and is called the root directory. Every file (including directories) is located somewhere on the file system in relation to the `/` directory. For the most part the root directory looks something like this:
 ```
@@ -34,7 +36,7 @@ All these and more are found on linux systems by default. There is a lot of usef
 /usr
 ```
 Each of these directories will get some level explanation at various points in the guide, and any file or directory path that starts with a `/` is referred to as an absolute path. If a path doesn't start with a `/` then it starts from the directory you are currently in and is referred to as a relative path.
-Directories inside directories or files in directories are separated with a "/". For example, in the `/home/user` file path, `/` indicates that starting from the root directory, go into the `home` directory and then go into the `user` directory. The file path `/home/user/executable.exe` is the same idea, but also take the executable.exe inside the user directory.
+Directories #45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2inside directories or files in directories are separated with a "/". For example, in the `/home/user` file path, `/` indicates that starting from the root directory, go into the `home` directory and then go into the `user` directory. The file path `/home/user/executable.exe` is the same idea, but also take the executable.exe inside the user directory.
 
 The last thing that is worth knowing in terms of file paths are `.` files. These are by default hidden but are important to know exist. A `.` represents this directory, and `..` represents the previous directory. So if you are in `/home/user`, the `.` directory is `/home/user` and the `..` directory is the `/home` directory, and the `../..` directory is the `/` directory. 
 
@@ -47,7 +49,7 @@ An important concept to grasp is the idea of environment variable. The Bourne Ag
 
 
 ### pwd
-The Print Working Directory or `pwd` command prints the directory you are currently working in starting from the root directory. When you log into a linux terminal, the original starting point is the `$HOME` directory of the user that was logged into. In this case, that is `/home/user`. When you go to other directories such as `/etc`, pwd will print that directory. There is some subtleties to this command but for the most part it is a simple print where I am on the system.
+The Print Working Directory or `pwd` command prints the directory you are currently working in starting from the root directory. When you log into a linux terminal, the original starting point is the `$HOME` directory of the user that was logged into. In this case, that is `/home/user`. When you go to other directories such as `/etc`, pwd will print that directory. T#45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2here is some subtleties to this command but for the most part it is a simple print where I am on the system.
 
 ### ls
 LiSt or `ls` is a command that lists the contents of the working directory. Normally, when you create a fresh install of linux or create a new user, this command will show that the home directory is empty for the most part. However, if you run the `ls` command on this particular system's home directory, you will find most of the exercises that will be used throughout this guide. 
@@ -62,7 +64,7 @@ When the `ls -a` command is run, the out put will be all the files including hid
 
 ### cd
 The `cd` command does exactly what it says on the tin. It changes the directory that you are currently in to another directory that is passed as the first argument. A couple examples include:
-```
+```#45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2
 cd
 cd ~/
 cd /home/user
@@ -92,9 +94,7 @@ Once logged onto the Debian vm,
 a) print your working directory  
 b) list all the contents of the directory  
 c) then change your directory to the `basicDirectory`   
-d) list the contents of the directory  
-e) print your working directory.
-
+d) list the #45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2
 ### Find in Man Page 1
 What does the man page say that the `-a` flag does for the command `ls`? What about the `-l` flag?
 
@@ -108,7 +108,7 @@ The `touch` command has two main use cases: updating the time stamp of a file, a
 `-- File3.txt
 ```
 
-First, you could update the time stamps of File1.txt, File2.txt, File3.txt. This may not seem very useful at face value, however some assumptions about a file with an older time stamp can be made by computers. A classic example is that `makefile` or `make` will skip files that have not changed since the last time it was "made". That may not make to much sense for now, but the important part is that there are times when all you need to do is update a time stamp for a program to work.
+First, you could update the time stamps of File1.txt, File2.txt, File3.txt. This may not seem very useful at face value, however some assumptions about a file with an older time stamp can be made by computers. A clI don't think I have one yetassic example is that `makefile` or `make` will skip files that have not changed since the last time it was "made". That may not make to much sense for now, but the important part is that there are times when all you need to do is update a time stamp for a program to work.
 
 However, most of the time when you are starting out touch is used to create an empty file. Using the example from earlier, if `touch` was used in these ways:
 ```
@@ -122,14 +122,14 @@ The result would be:
 |-- File2.txt
 |-- File3.txt
 |-- File4.txt
-|-- File5.txt
+|-- File5.tx#45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2t
 |-- File6.txt
 `-- File7.txt
 ```
 Notice that you can pass multiple files into `touch` and each of them will be created as long as there is a space separating them.
 
 ### mkdir  
-Now that you can make files, time to start organizing them into different directories. `mkdir` stands for MaKe DIRectory. This is the primary way in which files are separated on Linux, and is similar to folders on Windows or Mac. Typically, all `mkdir` is used in the following way:
+Now that you can make files, time to start organizing them into different directories. `mkdir` stands for MaKe DIRectory. This is the primary way in which files are separated on Linux, and is similar to folders on Windows or Mac. Typically, all `mkdir` is u#45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2sed in the following way:
 ```
 mkdir DIRECTORY
 ```
@@ -170,7 +170,7 @@ mv TARGET DESTINATION
 So if you had a file structure that looks like this:
 ```
 ~/
-|-- Directory1
+|-- Director#45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2y1
 |   |-- File1
 |   |-- File2
 |   `-- File3
@@ -185,7 +185,7 @@ mv File2 ../File2
 mv File3 /home/user/File3
 ```
 
-If you were to run these three commands, they would all move their respective files into the home directory like so:
+If you were to run these three commands, they would all move their respec#45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2tive files into the home directory like so:
 
 ```
 ~/
@@ -291,15 +291,31 @@ In this case, the input is the "textFile.txt" and the output goes to the termina
 ## Intermediate
 
 ### uname
-The `uname` command is the way to get a lot of system information, such as operating system, kernel version and architecture.
+
+The `uname` command is used to find information about the system's operating system and architecture. Most often just include the `-a` flag. The `-a` flag is for displaying all the information `uname` provides. When that is too inconvenient to parse, I usually view the man page to find one particular flag.
+
+Some of the more frequent flags that would be needed are the following:
+```
+-n
+-v
+-p
+```
+`-n` will display your hostname. For default bash, your hostname can be found as part of the command prompt but that is not always the case. Different terminal configurations will sometimes not include your hostname as part of the command line. 
+
+The `-v` flag will show the kernel version. Since all Linux based systems are forked from the Linux Kernel, this will usually be a good way to figure out what specific distribution you are working on. There are other ways that will be covered later that are better, but this is a fairly easy one to keep track of.
+
+When the `-p` flag is used, uname will show the architecture of the processor. You likely wont need this often since you probably know the architecture for the computer most of the time, but it is worth knowing that it is in uname.
 
 ### find
 
 ### whoami
+When you run `whoami`, it does exactly what it says. It tells what user you are logged into. In this case if you run it right now, you will see that you are logged into `user`.
 
 ### Permissions
 
 #### sudo
+
+#### Switch User
 
 #### sudoers
 
