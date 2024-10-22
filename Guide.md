@@ -4,6 +4,7 @@
 ### Table of Contents
 
 ##   Purpose
+### Linux User Rants
 
 ##  The Basics  
 
@@ -36,7 +37,7 @@ All these and more are found on linux systems by default. There is a lot of usef
 /usr
 ```
 Each of these directories will get some level explanation at various points in the guide, and any file or directory path that starts with a `/` is referred to as an absolute path. If a path doesn't start with a `/` then it starts from the directory you are currently in and is referred to as a relative path.
-Directories #45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2inside directories or files in directories are separated with a "/". For example, in the `/home/user` file path, `/` indicates that starting from the root directory, go into the `home` directory and then go into the `user` directory. The file path `/home/user/executable.exe` is the same idea, but also take the executable.exe inside the user directory.
+Directories in directories or files in directories are separated with a "/". For example, in the `/home/user` file path, `/` indicates that starting from the root directory, go into the `home` directory and then go into the `user` directory. The file path `/home/user/executable.exe` is the same idea, but also take the executable.exe inside the user directory.
 
 The last thing that is worth knowing in terms of file paths are `.` files. These are by default hidden but are important to know exist. A `.` represents this directory, and `..` represents the previous directory. So if you are in `/home/user`, the `.` directory is `/home/user` and the `..` directory is the `/home` directory, and the `../..` directory is the `/` directory. 
 
@@ -46,33 +47,36 @@ An important concept to grasp is the idea of environment variable. The Bourne Ag
 
 
 ### Man Pages
+#### use often when using new commands
+#### look for --help -h This will be assumed
+#### take a look for extra stuff in the man page that interests you because I don't cover all the useful stuff each command has to offer
 
 
 ### pwd
-The Print Working Directory or `pwd` command prints the directory you are currently working in starting from the root directory. When you log into a linux terminal, the original starting point is the `$HOME` directory of the user that was logged into. In this case, that is `/home/user`. When you go to other directories such as `/etc`, pwd will print that directory. T#45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2here is some subtleties to this command but for the most part it is a simple print where I am on the system.
+The Print Working Directory or `pwd` command prints the directory you are currently working in starting from the root directory. When you log into a linux terminal, the original starting point is the `$HOME` directory of the user that was logged into. In this case, that is `/home/user`. When you go to other directories such as `/etc`, pwd will print that directory. There is some subtleties to this command but for the most part it is a simple print where I am on the system.
 
 ### ls
 LiSt or `ls` is a command that lists the contents of the working directory. Normally, when you create a fresh install of linux or create a new user, this command will show that the home directory is empty for the most part. However, if you run the `ls` command on this particular system's home directory, you will find most of the exercises that will be used throughout this guide. 
 
 The `ls` command has many important aspects that all relate to listing available file in a directory. It is worth remembering the following as all are very useful:
 ```
-ls -a
-ls -l
-ls -al
+$ ls -a
+$ ls -l
+$ ls -al
 ```
 When the `ls -a` command is run, the out put will be all the files including hidden files. A hidden file starts with a period such as `.filename` and a hidden directory is something like `.directory`. The `ls -l` command shows a "long list" which comes out to be extra information about the files and directories. The permissions, file size and date last opened are all visible in the long list. The last command `ls -al` or `ls -la`, is simply combining the `-l` and `-a` commands into a single flag. All that using both flags does, is make both take affect when the command runs so you get to see both hidden files and the longer list.
 
 ### cd
 The `cd` command does exactly what it says on the tin. It changes the directory that you are currently in to another directory that is passed as the first argument. A couple examples include:
-```#45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2
-cd
-cd ~/
-cd /home/user
-cd /
-cd home/user
-cd a/ridiculous/directory
-cd ~/a/ridiculous/directory
-cd ~/a/../a/./ridiculous/../ridiculous/directory/./././../directory
+```
+$ cd
+$ cd ~/
+$ cd /home/user
+$ cd /
+$ cd home/user
+$ cd a/ridiculous/directory
+$ cd ~/a/ridiculous/directory
+$ cd ~/a/../a/./ridiculous/../ridiculous/directory/./././../$ directory
 ```
 
 The explanations for each of these symbols can be found in the "Basics of Files and Their Structure" section. The important things related to the `cd` command specifically that trip a lot of new linux users up is the specifics that are only a little different.
@@ -89,12 +93,13 @@ The eighth is trying to demonstrate the `.` and the `..` directory. Try and foll
 
 #### How to Read Terminal
 
-### Exercise 1.1
+### Exercise 1.1  
 Once logged onto the Debian vm,   
 a) print your working directory  
 b) list all the contents of the directory  
 c) then change your directory to the `basicDirectory`   
-d) list the #45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2
+d) list the contents of the directory  
+e) print your working directory.
 ### Find in Man Page 1
 What does the man page say that the `-a` flag does for the command `ls`? What about the `-l` flag?
 
@@ -108,12 +113,12 @@ The `touch` command has two main use cases: updating the time stamp of a file, a
 `-- File3.txt
 ```
 
-First, you could update the time stamps of File1.txt, File2.txt, File3.txt. This may not seem very useful at face value, however some assumptions about a file with an older time stamp can be made by computers. A clI don't think I have one yetassic example is that `makefile` or `make` will skip files that have not changed since the last time it was "made". That may not make to much sense for now, but the important part is that there are times when all you need to do is update a time stamp for a program to work.
+First, you could update the time stamps of File1.txt, File2.txt, File3.txt. This may not seem very useful at face value, however some assumptions about a file with an older time stamp can be made by computers. A classic example is that `makefile` or `make` will skip files that have not changed since the last time it was "made". That may not make to much sense for now, but the important part is that there are times when all you need to do is update a time stamp for a program to work.
 
 However, most of the time when you are starting out touch is used to create an empty file. Using the example from earlier, if `touch` was used in these ways:
 ```
-touch File4.txt
-touch File5.txt File6.txt File7.txt
+$ touch File4.txt
+$ touch File5.txt File6.txt File7.txt
 ```
 The result would be:
 ```
@@ -122,16 +127,16 @@ The result would be:
 |-- File2.txt
 |-- File3.txt
 |-- File4.txt
-|-- File5.tx#45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2t
+|-- File5.txt
 |-- File6.txt
 `-- File7.txt
 ```
 Notice that you can pass multiple files into `touch` and each of them will be created as long as there is a space separating them.
 
 ### mkdir  
-Now that you can make files, time to start organizing them into different directories. `mkdir` stands for MaKe DIRectory. This is the primary way in which files are separated on Linux, and is similar to folders on Windows or Mac. Typically, all `mkdir` is u#45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2sed in the following way:
+Now that you can make files, time to start organizing them into different directories. `mkdir` stands for MaKe DIRectory. This is the primary way in which files are separated on Linux, and is similar to folders on Windows or Mac. Typically, all `mkdir` is used in the following way:
 ```
-mkdir DIRECTORY
+$ mkdir DIRECTORY
 ```
 
 In practice, you would replace "DIRECTORY" with descriptive names that are easy to remember. A common pitfall for new linux users is to include spaces in their directory and file names. While this can be done, I would suggest following a naming convention such as but not limited to one of the following:
@@ -152,11 +157,11 @@ If you chose to include spaces in your files paths, let me know ahead of time so
 
 A useful tip is if you want to create multiple directories in one go is to include the `-p` flag. The intuitive thing to do is 
 ```
-mkdir DIRECTORY/INADIRECTORY
+$ mkdir DIRECTORY/INADIRECTORY
 ```
 where you first make DIRECTORY and then put INADIRECTORY inside of DIRECTORY. By default however, mkdir will see this as an attempt to make the INADIRECTORY inside the presumed to be existing DIRECTORY. To get more value out of `mkdir`, you can do this instead:
 ```
-mkdir -p DIRECTORY/INADIRECTORY
+$ mkdir -p DIRECTORY/INADIRECTORY
 ```
 This will make DIRECTORY and also make put INADIRECTORY into DIRECTORY.
 
@@ -164,13 +169,13 @@ This will make DIRECTORY and also make put INADIRECTORY into DIRECTORY.
 ### mv  
 MoVe or `mv` is the command for moving files around as well as renaming them. `mv` takes two arguments, a target and a destination. A lot of the time, `mv` commands look like this:
 ```
-mv TARGET DESTINATION
+$ mv TARGET DESTINATION
 ```
 
 So if you had a file structure that looks like this:
 ```
 ~/
-|-- Director#45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2y1
+|-- Directory1
 |   |-- File1
 |   |-- File2
 |   `-- File3
@@ -178,14 +183,14 @@ So if you had a file structure that looks like this:
 ```
 For the purposes of the following examples, we will be in `Directory1`. First, there are often different ways to get the same result. Take the following:
 ```
-mv File1 ~/File1
+$ mv File1 ~/File1
 
-mv File2 ../File2
+$ mv File2 ../File2
 
-mv File3 /home/user/File3
+$ mv File3 /home/user/File3
 ```
 
-If you were to run these three commands, they would all move their respec#45~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep 11 15:25:05 UTC 2tive files into the home directory like so:
+If you were to run these three commands, they would all move their respective files into the home directory like so:
 
 ```
 ~/
@@ -209,9 +214,9 @@ Start:
 ```
 Commands:
 ```
-mv File1 ~/newFile
-mv File2 newFile2
-mv ../File4 File4
+$ mv File1 ~/newFile
+$ mv File2 newFile2
+$ mv ../File4 File4
 ```
 Result:
 ```
@@ -239,8 +244,8 @@ Going back to this example:
 ```
 If you were to run the following from the `~/` directory:
 ```
-cp Directory1/File1 File5
-cp Directory1/File2 Directory6/File6
+$ cp Directory1/File1 File5
+$ cp Directory1/File2 Directory6/File6
 ```
 you would get:
 ```
@@ -269,7 +274,7 @@ By simply entering `clear` into the terminal, it clears the screen. A lot of peo
 The `cat` command is for conCATenating text to the screen, or to the end of a file. In short, cat takes standard input and turns it into standard output. If you are familiar with c++ at all then that should remind you of cin and cout which would be good, but not really needed. Starting with the easiest and most common use of `cat`, outputting the contents of a file.
 lets say a file called "textFile.txt" exists and the contents are "This is a text file". If you rand the command
 ```
-cat textFile.txt
+$ cat textFile.txt
 ```
 the output to the terminal would be:
 ```
@@ -280,10 +285,52 @@ In this case, the input is the "textFile.txt" and the output goes to the termina
 
 ### less and more   
 
+### Text editors via the terminal
+#### limitations
+#### Vi, Vim, Nvim
+#### emacs
 
 ### tree  
--L num
+\#Linux User Rant\#  
+Technically, now that you can move through the filesystem at a basic level, you know how to use Linux. Everything after these basics gets into tools to make using these tools easier. A Graphical User Interface (GUI), web browsers, all these things are only accessible after understanding how to interact with your file system and make changes. This is where a lot of windows and apple people argue why should they learn these basics when they can just use the GUI tools that work perfectly well. To that I say when you open file explorer or file finder, from my perspective you have opened your terminal and used the ls command. While there is nothing wrong with the GUI, it has limitations. I believe that tree is the first command that highlights some of these limitations. If you have ever tried to find a specific file, but don't know exactly where it is, tree is one of the first commands I would wish I had when using a GUI to find said file.  
+\#End of Rant\#
 
+The `tree` command has a similar role to the `ls` command in that it lists the contents of the current directory. It is different in that it also prints of all the directories and files inside all the directories in the current directory. It can look something like this:
+```
+~/
+|-- Directory1
+|   |-- File1
+|   |-- File2
+|   |-- File3
+|   `-- File6
+|-- Directory2
+|   |-- File7
+|   |-- File8
+|   |-- File9
+|   `-- File10
+|-- File11
+`-- File12
+```  
+I would encourage you to go to different directories on your vm and run the tree command a few times to get an idea of what kind of output `tree` gives you.  
+Provided that you have done so, you may have noticed that the output of tree can get quite large, or you may not like how it looks, etc. A quick poke through the man page shows the built in ways to filter the output of tree. Here are the ones that I think are useful.
+```   
+$ tree -a 
+$ tree -p
+$ tree -h
+$ tree -d  
+$ tree -L [num]
+$ tree --charset=ascii
+```
+Since `tree` is a command that has a similar function to `ls`, you can expect that some of the flags and what they mean to be similar, if not in name in function. A good number of these flags are supposed to remind you of using the `ls -al` command.  
+Starting with the most obvious one, `tree -a` displays all files, including hidden ones. It is worth noting that unlike the `ls -a` command, `tree -a` does not display the `.` or the `..` directories.
+
+\#Linux User Rants\#
+
+\#End of Rant\#
+
+### Find in Man Page 
+a) If `tree -h` displays the size of a file or directory in a human readable fashion, how would you display it in a human unreadable fashion? (Your looking to print an exact size in bytes)
+b) The `ls -l` command also lists the size of the file. Another way to show the size of files would be using the `ls -s` command. As you can imagine, the `-s` stands for size. Since tree has a flag to make file sizes human readable, it stands to reason that ls does as well. What is this flag? What other flags would be needed to make use of this human readable flag?
 
 ### grep 
 #### wildcards 
@@ -304,16 +351,7 @@ Some of the more frequent flags that would be needed are the following:
 
 The `-v` flag will show the kernel version. Since all Linux based systems are forked from the Linux Kernel, this will usually be a good way to figure out what specific distribution you are working on. There are other ways that will be covered later that are better, but this is a fairly easy one to keep track of.
 
-When the `-p` flag is used, uname will show the architecture of the processor. You likely wont need this often since you probably know the architecture for the computer most of the time, but it is worth knowing that it is in uname.
-
-### find
-
-### whoami
-When you run `whoami`, it does exactly what it says. It tells what user you are logged into. In this case if you run it right now, you will see that you are logged into `user`.
-
-### Permissions
-
-#### sudo
+When the `-p` flag is used, uname will show the architecture of the processor. You likely wontpasswd command in linux
 
 #### Switch User
 
