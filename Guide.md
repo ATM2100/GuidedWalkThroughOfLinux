@@ -10,7 +10,7 @@
 
 ### History and Ecosystem of Linux
 
-### Basics of Files and Their Structure
+### Basics of Files and Their Structure //subdirectories
 Before there is anything to talk about in terms of details in Linux, one of the most important notions to grasp is that everything is a file. Files are files, executables are files, folders or directories as they are known on linux are files. The beginning of the linux file system is `/`, and is called the root directory. Every file (including directories) is located somewhere on the file system in relation to the `/` directory. For the most part the root directory looks something like this:
 ```
 /bin
@@ -318,15 +318,36 @@ $ tree -a
 $ tree -p
 $ tree -h
 $ tree -d  
-$ tree -L [num]
+$ tree -L level
 $ tree --charset=ascii
 ```
 Since `tree` is a command that has a similar function to `ls`, you can expect that some of the flags and what they mean to be similar, if not in name in function. A good number of these flags are supposed to remind you of using the `ls -al` command.  
 Starting with the most obvious one, `tree -a` displays all files, including hidden ones. It is worth noting that unlike the `ls -a` command, `tree -a` does not display the `.` or the `..` directories.
+The other two flags that I will mention that relate to the `ls -l` command directly are the `-h` and `-p` flags. The `-h` flag  will print the size of the files and directories with human readability in mind. This means that instead of it just being a big number, the numbers are simplified to 4K, or 2G. For example, take:
+```
+$ ls -l
+drwxrwxr-x  2 root root      4096 June 13  2022  Directory
+$ tree -L 1 -h --charset=ascii
+[4.0K]  .
+`-- [4.0K]  Directory
+```
+The 4096 from the `ls -l` and the [4.0K] next to the "Directory" from the `tree -h` represent the same number. 
 
-\#Linux User Rants\#
+The `-p` flag for the `tree` command is to show the permissions. In the `ls -l` command, the permissions are the first thing printed for each file and directory. For `tree -p`, it is also before each file, just with the extra files that `tree` shows.
 
-\#End of Rant\#
+One of the flags the helps control how much information is printed is `tree -d`, which only prints directories. There can be value in only printing just the directory structure. Just running the `tree` command can output thgo0 directories and 60,000 files. This is a bit of an extreme example, but it shows how just printing directories can make the broader organization of your system easier to parse.
+
+Another way to limit the output of the tree command is to define how many levels of directories it can print with the `tree -L level` command, where level is replaced with a number. If you want to limit the depth that `tree` prints but not limit the files being printed, `tree -L 2` would make it so that only two subdirectories and all their files are printed. The command would not print any deeper than two subdirectories.
+
+\#Linux User Rants\#  
+When you use the command line enough and have seen enough commands you start to make connections between commands. This happens in much the same way that when you use a gui long enough you get used to the ways in which gui's are organized. An example for me is when I told someone that I didn't use tree very much because of how much output there could be. My friend said that he use the `-L` to limit the number of levels. My response was something like "wow, so you just use -L and a number and you only print that many subdirectories?". I would compare this to the experience one might get from figuring out that you can use ctrl + f or command + f to find but if you use ctrl + h or command + F you can find and replace. This kind of reasoning takes experience and practice, but so does using a gui. The command line once learned however is faster.    
+\#End of Rant\#  
+
+If you want to change the text to be easier to copy and paste, you can change the character set to something else such as ascii. You could do so with the following:
+```
+$ tree --charset=ascii
+```
+
 
 ### Find in Man Page 
 a) If `tree -h` displays the size of a file or directory in a human readable fashion, how would you display it in a human unreadable fashion? (Your looking to print an exact size in bytes)
@@ -351,13 +372,18 @@ Some of the more frequent flags that would be needed are the following:
 
 The `-v` flag will show the kernel version. Since all Linux based systems are forked from the Linux Kernel, this will usually be a good way to figure out what specific distribution you are working on. There are other ways that will be covered later that are better, but this is a fairly easy one to keep track of.
 
-When the `-p` flag is used, uname will show the architecture of the processor. You likely wontpasswd command in linux
+When the `-p` flag is used, uname will show the architecture of the processor. At the time of writing, this will likely be some form of x86_64.
 
-#### Switch User
+### accounts
+In case it needs to be stated, a user is someone interacting with an operating system such as Windows, Mac OS or Debian. A user does so through an account. On commercial Windows, there are really only two types of accounts, regular users and administrators. Permissions for linux accounts at a surface level is just as simple. There are regular accounts such as "user" on your vm, and then there is root. 
+
+#### Switch User su
 
 #### sudoers
 
 #### passwd and Account creation
+
+#### warnings about chmod 777 and chown 777
 
 ### Basic Networking
 
@@ -372,10 +398,13 @@ When the `-p` flag is used, uname will show the architecture of the processor. Y
 #### basic apt
 
 ### Basic programming
+Teaching the ins and outs of the various programming languages is out of scope. This section is for people who know a little bit about programming and want to learn the use cases for three relatively common languages. This section focuses on the important parts of programming that are abstracted in tools like vscode. I will say that even if you don't do much programming, the bash section could be useful to go through.
 
 #### bash
 
-#### C, C++, gcc, g++, make
+#### C, C++, gcc, g++
+
+##### make
 
 #### Python
 
