@@ -34,7 +34,7 @@ All these and more are found on linux systems by default. There is a lot of usef
 /dev
 /home
 /root
-/usr
+/proc
 ```
 Each of these directories will get some level explanation at various points in the guide, and any file or directory path that starts with a `/` is referred to as an absolute path. If a path doesn't start with a `/` then it starts from the directory you are currently in and is referred to as a relative path.
 Directories in directories or files in directories are separated with a "/". For example, in the `/home/user` file path, `/` indicates that starting from the root directory, go into the `home` directory and then go into the `user` directory. The file path `/home/user/executable.exe` is the same idea, but also take the executable.exe inside the user directory.
@@ -76,7 +76,7 @@ $ cd /
 $ cd home/user
 $ cd a/ridiculous/directory
 $ cd ~/a/ridiculous/directory
-$ cd ~/a/../a/./ridiculous/../ridiculous/directory/./././../$ directory
+$ cd ~/a/../a/./ridiculous/../ridiculous/directory/./././../directory
 ```
 
 The explanations for each of these symbols can be found in the "Basics of Files and Their Structure" section. The important things related to the `cd` command specifically that trip a lot of new linux users up is the specifics that are only a little different.
@@ -358,6 +358,7 @@ b) The `ls -l` command also lists the size of the file. Another way to show the 
 
 ## Intermediate
 
+
 ### uname
 
 The `uname` command is used to find information about the system's operating system and architecture. Most often just include the `-a` flag. The `-a` flag is for displaying all the information `uname` provides. When that is too inconvenient to parse, I usually view the man page to find one particular flag.
@@ -375,25 +376,111 @@ The `-v` flag will show the kernel version. Since all Linux based systems are fo
 When the `-p` flag is used, uname will show the architecture of the processor. At the time of writing, this will likely be some form of x86_64.
 
 ### accounts
-In case it needs to be stated, a user is someone interacting with an operating system such as Windows, Mac OS or Debian. A user does so through an account. On commercial Windows, there are really only two types of accounts, regular users and administrators. Permissions for linux accounts at a surface level is just as simple. There are regular accounts such as "user" on your vm, and then there is root. 
+In case it needs to be stated, a user is someone interacting with an operating system such as Windows, Mac OS or Debian. A user does so through an account, and this section will go through some of the basics of accounts. On commercial Windows, there are really only two types of accounts, regular users and administrators. Permissions for linux accounts at a surface level is just as simple. There are regular accounts such as "user" on your vm, and then there is root. Root is the highest privileged account on your system. 
 
-#### Switch User su
+\#Warning\#  
+Do not share your root password. Anyone with your root password has access to your entire system and can lock you out of your own computer.
 
-#### sudoers
+Also do not run random commands as root because you can pretty easily destroy something important and not be able to undo the damage. Anyone using root or "sudo" is assumed to know the risk of making changes to your computer. For example, lets say you want to install an app like steam.     
+\#End warning\#  
 
-#### passwd and Account creation
+Installing anything and removing some files among other things to the computer will make changes to the system and therefore require elevated privileges. There are two main ways in which this can be done, add your account to the sudoers file or to switch users.
+
+#### Switch User su  
+The main use of `su` is to switch the current user. Since it is very easy to damage your computer with random commands on linux, normally the main account being used has limited privileges. `su` allows you to switch to an account with higher privileges and run the needed commands. This does assume that you know the password to the account you are trying to access, but for a standard desktop that should not be an issue. Here are some examples of `su` being used:
+```
+$ su
+$ su -
+$ su - root
+$ su - user
+```
+
+It is worth noting that `su` defaults to switching to the root user, so the first three commands will switch you to the root user after you enter the password. For the fourth `su` command will switch to the `user` account, or whatever you replace `user` with, provided you know the password.  
+
+It is worth noting that each user has a different home directory. When you switch users, you have different permissions and different capabilities. The most important part to remember about switching accounts however is that your home directory also changed to the new account. a `cd ~` will take you to the current users home directory, not to `user`'s home directory. This means that when you `su - root`, the `~` means the root user's home directory. In terms of file system location, this is the `/root` directory, distinct from all other user's home directories being in `/home`.
+
+Once you have switched users and run the needed commands, there are a few ways in which you can go back to a regular user.
+
+#### whoami  
+If you ever forget what user you are currently logged into, running the command `whoami` will output the current user. There is nothing else to this command, it just outputs the user that is currently logged in.
+
+#### sudoers  
+Another way to get temporary elevated privileges that does not require switching accounts is to start the command with `sudo` or "Super User DO". It is worth noting that `sudo`, while useful is not on all Unix based systems. It is possible that in the future `sudo` will be replaced with `run0`. For now, I will only be going over sudo because of how prolific it is. It is worth noting that the main reason `sudo` would get replaced is because it is bulky and configuring sudo is not something standard users care about.  
+
+To make your `user` account allowed to use `sudo`, you need to add `user` to the sudoers file, which is `/etc/sudoers`. For this exercise, just copy and past the root permissions such that you have this:
+```
+root ALL=(ALL:ALL) ALL
+user ALL=(ALL:ALL) ALL
+```
+This will make it so that the `user` account can use the `sudo` command to do anything. In a professional environment, this may be a bad idea, but for a private computer it's just fine.
+
+### /etc  
+
 
 #### warnings about chmod 777 and chown 777
+With great power comes great responsibility. When you are given the power to make any change to the system and the system will let you, it can be easy to expose your computer to danger. Some of the more important commands to look out for are CHange OWNer and CHange MODe (`chown` and `chmod`). If something online says to `chmod` or `chown` a file or directory, be very carful, especially with 777. When you run `ls -l` you get output like this:  
+drwxrw-r-x  
+This shows what users and groups have access to certain files and directories. If you don't know how to count in binary, the explanation of what the 777. Know that it gives every user access to the file or directory the `chown` or `chmod` command is run on and it poses a significant security risk.
 
-### Basic Networking
+This is how the 777 relates to the permissions:
+```
+ |7  |7  |7  |
+-|rwx|rwx|rwx|
+```
 
-#### ping
+In the same way that three bits has eight combinations of numbers, there are eight ways to configure permissions. A "000" would be no one is allowed to do anything with this file/directory. Adding one would allow for "execute", adding two allows for "write" and adding four adds "read" permissions. When you want to have more than one of those three privileges just add the ones you want together.
+
+### Exercise 777 meaning
+Starting with `0 = ---` being correct, show that you can make all 8 combinations of permissions with the following key:  
+1 = x  
+2 = w  
+4 = r 
+
+0 = ---  
+1 = ---  
+2 = ---  
+3 = ---  
+4 = ---  
+5 = ---  
+6 = ---  
+7 = ---  
+
+
+### Basic Networking  
+Linux is often used for it's networking tools. I will briefly go over two of the most important tools for networking on linux: ping and ip.
+
+#### ping  
+ping is used to test connection to a specific IP address. Running commands such as the following is common practice when you are unsure whether or not you are connected to the internet.
+```
+$ ping 8.8.8.8
+$ ping google.com
+```
+It is is worth noting that these two commands are essentially the same thing if your DNS is set up properly. If you don't know what a DNS server is, it takes a human readable URL and turns it into an IP address such as `8.8.8.8`. If you are setting up servers, extra vm's that need to be connected to the host, or just checking if you can connect to the internet, ping is often how you do so.
+
+\#Warning\#
+If you are going to try and run the ping command a lot in a program, know that `ping` is a really good way to DOS someone. If you use ping, make sure that it is not in an infinite loop and not letting it go on forever. It might get perceived as a threat if you are running hundreds of ping commands all targeting the same place. 
+\#End Warning\#
 
 #### ip
+Some of the people with a little bit of experience with networking on Linux may be a little surprised that I did not include the `ifconfig` command anywhere here. That is because the `ifconfig` command is currently being phased out and replaced by the `ip` command. The `ifconfig` command was released originally in 1983. While you will still see if from time to time, you should learn the `ip` command instead because it is a newer and generally more powerful tool.
 
-### Package manager
+For the purposes of this guide, I will only be going over one part of the `ip` command, and that is the address show section. Here are a few of the common ways to run this command:
+```
+$ ip addr
+$ ip a
+$ ip a show
+$ ip address show
+$ ip address
+```
+The `ip` command will execute for you any of these commands as if the command run was `ip address show`. There is only one connection that is guaranteed to be there regardless of the system and the internet connections. This connection is the `lo` connection and is your loopback address. For this guide, you hopefully see at least one other connection. If you don't and can't ping anything then you will not be able to do the following sections fully:  
+basic apt  
+Setting Up a Basic Desktop  
+These sections are some of the most useful for learning how to use Linux, I do recommend getting connected to the internet.
 
-#### apt pacman dnf
+### Package manager  
+Package managers are how you install software on Linux distributions. 
+
+#### apt pacman dnf snap
 
 #### basic apt
 
@@ -403,6 +490,7 @@ Teaching the ins and outs of the various programming languages is out of scope. 
 #### bash
 
 #### C, C++, gcc, g++
+
 
 ##### make
 
