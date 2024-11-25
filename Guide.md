@@ -44,9 +44,28 @@ The last thing that is worth knowing in terms of file paths are `.` files. These
 An important concept to grasp is the idea of environment variable. The Bourne Again SHell or BASH keeps track of some useful information that is stored in variable denoted with a `$`. An important variable that will be needed throughout the guide is the `$HOME` Environment variable. In general, these variable with be paths to files or directories. The `$HOME` leads specifically to what is called the home directory or simply "home", that is in the `/home/user`. Any user has their own home directory, but that will be covered more in the intermediate section. While there are many ways to find your home directory, another way that is a bit easier to use is the `~/` is shorthand for the home directory.
 
 ### auto complete
+One of the most important parts of using a terminal that is easy to overlook is auto complete. Any time you enter any command, especially longer ones, pressing tab will automatically complete the rest of the word you are typing. For example, if you want to type the following:
+```
+cd ~/The/Most/Annoying/Directory/That/Ever/Existed/Nothing/Can/Even/Compare
+```
+What this kind of command does will be explained later, the important part is that is a lot of typing. What I actually type for a command like this would be something more like this (The new lines are for clarity not actually input):
+```
+cd ~/T[tab]
+Mo[tab]
+A[tab]
+[tab]
+[tab]
+[tab][tab]E[tab]
+[tab]
+[tab][tab]N[tab]
+[tab]
+[tab]
+[tab]
+```
+There are four main situations when you try to auto complete. The first option is that there is only one option available. In this case, pressing tab will fill in the rest. The `T[tab]` section fills out to `The/`. The second option is that even though you have not input anything, there is only one option available. Most of the example demonstrates this, for example the fourth [tab] would expand to `Directory/`. The third and fourth cases are when there is more than one option available to auto complete when the [tab] key is pressed or there are no options. You can press the [tab] key twice in quick succession to show all the available options. If the double [tab] press shows nothing, then there are no available options.
 
-
-### Man Pages
+### Extra help and manuals
+#### Man Pages
 #### use often when using new commands
 #### look for --help -h This will be assumed
 #### take a look for extra stuff in the man page that interests you because I don't cover all the useful stuff each command has to offer
@@ -91,8 +110,6 @@ The sixth and seventh cd commands listed are very similar and the meanings you s
 
 The eighth is trying to demonstrate the `.` and the `..` directory. Try and follow the command and determine which directory you are in after each `/`. 
 
-#### How to Read Terminal
-
 ### Exercise 1.1  
 Once logged onto the Debian vm,   
 a) print your working directory  
@@ -102,6 +119,15 @@ d) list the contents of the directory
 e) print your working directory.
 ### Find in Man Page 1
 What does the man page say that the `-a` flag does for the command `ls`? What about the `-l` flag?
+
+
+#### How to Read Terminal
+When you look at the terminal, you will see something like the following:
+```
+user@ahostname:~$
+root@ahostname:/proc#
+```
+Everything before the `@` symbol is the user that is currently logged in. Everything between the `@` and the `:` symbols is the hostname. Everything between the `:` and either the `#` or the `$` is the current directory. The first two parts are pretty much always part of any command prompt, which is after the `#` or the `$` where you input commands. The `$` is usually used to denote a standard user. The `#` is usually used to denote either root or superuser privileges. 
 
 
 ### touch  
@@ -165,7 +191,6 @@ $ mkdir -p DIRECTORY/INADIRECTORY
 ```
 This will make DIRECTORY and also make put INADIRECTORY into DIRECTORY.
 
-### Consider adding a prelude to mv cp file path and starting directory //if you aren't renaming a file, you don't need to be explicit
 ### mv  
 MoVe or `mv` is the command for moving files around as well as renaming them. `mv` takes two arguments, a target and a destination. A lot of the time, `mv` commands look like this:
 ```
@@ -261,8 +286,33 @@ you would get:
 File1 and File5 will be the same as well as File2 and File6. Nice and simple and works in a very similar way to mv, in terms of use.
 
 ### rm 
+The `rm` command is in charge of ReMoving files, or essentially deleting them. This tool runs counter to the `touch` and `mkdir` that are in charge of making new files and directories. It is important to know that once you run the `rm` command, you can't take it back. There is no ctrl+z, there is no undo and there is no recovering files deleted with rm. Take the following files:
+```
+~/
+|-- Directory1
+|   |-- File1
+|   |-- File2
+|   |-- File3
+|   `-- File6
+|-- File4
+`-- File5
+```
+Here are a few example of how to use the `rm` command:
 
-#### -r
+```
+$ rm Directory1/File1
+$ rm Directory1/File2 /home/user/File4
+$ rm -rf Directory1
+```
+If you ran all these commands you would get this result:
+```
+~/
+`-- File5
+```
+The relative and absolute paths as well as deleting more than one file at a time are what the first two commands are supposed to show. Deleting directories requires flags that have caused much harm to many a new Linux user over the years. 
+
+#### -r, -f and -rf WARNING
+When you are removing individual files, you only have to make sure that you are removing the correct files. When you delete a directory, you should be very careful that you aren't deleting anything important. Randomly copying `rm -rf` commands and pasting them into your terminal is a bad plan. Linux had to add counter measures to the famous `rm -rf /` command that literally deletes your entire system. If you want to delete your entire system, there is a flag that you have to include: `--no-preserve-root`. The `-r` stand for recursive, which is what allows the `rm` command to delete files in directories and directories in directories. The `-f` flag is what force the system to actually run the command on all of the files and directories. The `-f` flag is to help make sure that you do not delete important files by accident. When these two flags are combined, you will delete all files and directories in the specified directory. Be very careful when using `rm -rf`, and make sure that it is doing what you want it to, because there is not really a good way to get it back.
 
 ### clear 
 By simply entering `clear` into the terminal, it clears the screen. A lot of people like to work with their terminal from the top and clear the screen a lot. Personally, I like having previously run commands and their results in the terminal so that I can go back and look through it. It is good to know however, because if you generate a lot of output to the screen and need to sort through small sections at a time, clear can often help make that more manageable.
@@ -285,10 +335,14 @@ In this case, the input is the "textFile.txt" and the output goes to the termina
 
 ### less and more   
 
-### Text editors via the terminal
+### Text editors 
+There are a plethora of of text editors that are useable in a terminal environment. If you take the time to learn these text editors, you may find that they are faster than their modern counter parts. The two main terminal based text editors are Vi and emacs, but there is also nano. 
+
 #### limitations
+Text editors in the terminal have some limitations that modern text editors like Microsoft Word, Google docs, VSCode and notepad don't have. 
+
 #### Vi, Vim, Nvim
-#### emacs
+#### nano
 
 ### tree  
 \#Linux User Rant\#  
@@ -415,6 +469,16 @@ user ALL=(ALL:ALL) ALL
 This will make it so that the `user` account can use the `sudo` command to do anything. In a professional environment, this may be a bad idea, but for a private computer it's just fine.
 
 ### /etc  
+The `/etc` directory is where most system configurations are. You already know the the sudoers file is in `/etc`, but you will find a lot of other useful files in here. Some what you will find here are the following:
+```
+hostname
+passwd
+sudoers
+timezone
+```
+The `hostname` file simply contains the hostname of the computer. You probably wont ever need to get the hostname from here, but you can. If you want to change the hostname, this is one of the files that you should expect to change as a result.
+
+
 
 
 #### warnings about chmod 777 and chown 777
@@ -478,27 +542,41 @@ Setting Up a Basic Desktop
 These sections are some of the most useful for learning how to use Linux, I do recommend getting connected to the internet.
 
 ### Package manager  
-Package managers are how you install software on Linux distributions. 
+Package managers are how you install software on Linux distributions. When you want to get packages for a new desktop or a different programming language, you get it through a package manager. Getting a `.zip` from a website or more accurately a `.deb` or a `.tar` which are compressed files on Linux is uncommon. You typically want to get your software from your package manager, which does have it's advantages which we will go over in the "basic apt" section.
 
-#### apt pacman dnf snap
+#### apt pacman dnf  
+There are various different package managers for the different distributions. Here are some of the most common package managers with their most common distributions:  
+apt: Debian and Ubuntu  
+pacman: Arch and Manjaro  
+dnf: Fedora, CentOS, Red Hat Enterprise Linux (RHEL)  
+Each are optimized for different use cases, and have different versions of packages depending on distribution goals. The two extremes are Debian which prizes stability and Arch which wants to have the most up to date packages possible. The dnf package manager in my experience is the easiest to understand or to learn, but is fairly slow in comparison to the others.  
 
-#### basic apt
+#### basic apt  
+The most important commands for the apt package manager for someone new to Linux are the following:
+```
+$ apt update
+$ apt upgrade
+$ apt install [package]
+$ apt remove [package]
+$ apt autoremove
+```
+It is worth noting that all of these require elevated privileges. You will need to run these commands with `sudo` or as root to get them to work. 
 
-### Basic programming
-Teaching the ins and outs of the various programming languages is out of scope. This section is for people who know a little bit about programming and want to learn the use cases for three relatively common languages. This section focuses on the important parts of programming that are abstracted in tools like vscode. I will say that even if you don't do much programming, the bash section could be useful to go through.
+Every time you do anything with a package manager, you should update and upgrade before doing anything else. As a new user, I was very confused on what the difference between updating and upgrading was. These two commands are quite distinct in purpose so it is important to do both and in the correct order. Packages are held in repositories that are managed and receive changes based on distribution. Note that just because the same package manager is used on two different distributions does not mean that the packages are the same. If you want to update the where the package manager thinks all the repositories are and that it knows the most recent version of all the packages then you run an update. If you want to make sure that all the packages currently installed on your machine are up to date, you do an upgrade. Please note that you should always run update first so that when you upgrade the most recent packages are installed. 
 
-#### bash
+I can not emphasize how important updating and upgrading are to do before doing anything else with a package manager. Finding the right package is a skill, but the internet can help. You should expect to learn how to the `apt search`, `apt list` and `apt cache` at some point but it is not necessary starting skill of the Linux experience. If you want to start learning these parts of the `apt`, it is worth noting that because the `apt` has a reference to all it's repositories on the machine, you do not need elevated privileges to search for specific packages.
 
-#### C, C++, gcc, g++
-
-
-##### make
-
-#### Python
+After updating, upgrading and finding the right package, you will either want to install or uninstall that package from your machine. All you have to do is run the command with `install` or `remove`. If installing a package require other packages, it will ask if that is okay and require a confirmation in the form of a "y". If you enter an "n", that indicates that you are not okay with installing the required packages and will abort the install. `remove` is how you uninstall the packages and has a similar process for deleting the required packages.
+  
 
 ### tar
+`tar` stands for Tape ARchive, and is an old form of compression. Much like the compression software `7zip` that you may be familiar with, `tar` is one of the primary ways to extract and compress files on Linux. The main things you need to know about `tar` are the flags for compression and extraction. Here are some examples:
+```
+tar -cf compressed.tar /uncompressed
+tar -x
+```
 
 ## Advanced
 
-## Use Cool Things
+
 
