@@ -6,7 +6,8 @@
 ##   Purpose
 ### Linux User Rants
 
-##  The Basics  
+##  The Basics 
+Files are files, extensions don't matter 
 
 ### History and Ecosystem of Linux
 
@@ -65,6 +66,7 @@ A[tab]
 There are four main situations when you try to auto complete. The first option is that there is only one option available. In this case, pressing tab will fill in the rest. The `T[tab]` section fills out to `The/`. The second option is that even though you have not input anything, there is only one option available. Most of the example demonstrates this, for example the fourth [tab] would expand to `Directory/`. The third and fourth cases are when there is more than one option available to auto complete when the [tab] key is pressed or there are no options. You can press the [tab] key twice in quick succession to show all the available options. If the double [tab] press shows nothing, then there are no available options.
 
 ### Extra help and manuals
+
 #### Man Pages
 #### use often when using new commands
 #### look for --help -h This will be assumed
@@ -110,15 +112,24 @@ The sixth and seventh cd commands listed are very similar and the meanings you s
 
 The eighth is trying to demonstrate the `.` and the `..` directory. Try and follow the command and determine which directory you are in after each `/`. 
 
-### Exercise 1.1  
+### Exercise cd/ls/pwd  
 Once logged onto the Debian vm,   
 a) print your working directory  
 b) list all the contents of the directory  
-c) then change your directory to the `basicDirectory`   
+c) then change your directory to the `exercises`   
 d) list the contents of the directory  
-e) print your working directory.
-### Find in Man Page 1
+e) print your working directory.  
+From this point on, All exercises will start in this directory.
+
+### Find in Man Page ls
 What does the man page say that the `-a` flag does for the command `ls`? What about the `-l` flag?
+
+### Exercise autocomplete
+Change your Directory to the `~/exercises/autoComplete/` directory.
+
+a) Change your directory to: `The/most/Annoying/directory/That/EVER/Existed/Possibly/ever/But/I/Guess/There/Could` 
+I highly recommend using auto complete and not typing all that out.
+
 
 
 #### How to Read Terminal
@@ -255,94 +266,23 @@ Result:
 ```
 Notice that Directory1 is empty, and that File1-4 are in the `~/` directory and can be renamed. To rename, you simply move the file to where you want it to be but with a different name. 
 
-### cp  
-CoPy or `cp`, does exactly what you think. It copies a file and it's contents from one file into a brand new file. Similar to `mv`, it usually takes two arguments, a source and a destination. Just like `mv`, you have to have the correct name of the source, but the destination can be what ever you want.
+### Exercise creation
+Start in the `~/exercises/creation/`.  
 
-Going back to this example:
-```
-~/
-|-- Directory1
-|   |-- File1
-|   |-- File2
-|   `-- File3
-`-- File4
-```
-If you were to run the following from the `~/` directory:
-```
-$ cp Directory1/File1 File5
-$ cp Directory1/File2 Directory6/File6
-```
-you would get:
-```
-~/
-|-- Directory1
-|   |-- File1
-|   |-- File2
-|   |-- File3
-|   `-- File6
-|-- File4
-`-- File5
-```
-File1 and File5 will be the same as well as File2 and File6. Nice and simple and works in a very similar way to mv, in terms of use.
+a) create the following files:  
+temp.out  
+test.txt  
+main.cpp  
+customBashScript.sh  
+RandomFile  
+b) Make the following directories in the `~/exercises/creation/` directories:  
+1. Empty
+2. temporary  
+3. A/Simple/Directory    
 
-### rm 
-The `rm` command is in charge of ReMoving files, or essentially deleting them. This tool runs counter to the `touch` and `mkdir` that are in charge of making new files and directories. It is important to know that once you run the `rm` command, you can't take it back. There is no ctrl+z, there is no undo and there is no recovering files deleted with rm. Take the following files:
-```
-~/
-|-- Directory1
-|   |-- File1
-|   |-- File2
-|   |-- File3
-|   `-- File6
-|-- File4
-`-- File5
-```
-Here are a few example of how to use the `rm` command:
-
-```
-$ rm Directory1/File1
-$ rm Directory1/File2 /home/user/File4
-$ rm -rf Directory1
-```
-If you ran all these commands you would get this result:
-```
-~/
-`-- File5
-```
-The relative and absolute paths as well as deleting more than one file at a time are what the first two commands are supposed to show. Deleting directories requires flags that have caused much harm to many a new Linux user over the years. 
-
-#### -r, -f and -rf WARNING
-When you are removing individual files, you only have to make sure that you are removing the correct files. When you delete a directory, you should be very careful that you aren't deleting anything important. Randomly copying `rm -rf` commands and pasting them into your terminal is a bad plan. Linux had to add counter measures to the famous `rm -rf /` command that literally deletes your entire system. If you want to delete your entire system, there is a flag that you have to include: `--no-preserve-root`. The `-r` stand for recursive, which is what allows the `rm` command to delete files in directories and directories in directories. The `-f` flag is what force the system to actually run the command on all of the files and directories. The `-f` flag is to help make sure that you do not delete important files by accident. When these two flags are combined, you will delete all files and directories in the specified directory. Be very careful when using `rm -rf`, and make sure that it is doing what you want it to, because there is not really a good way to get it back.
-
-### clear 
-By simply entering `clear` into the terminal, it clears the screen. A lot of people like to work with their terminal from the top and clear the screen a lot. Personally, I like having previously run commands and their results in the terminal so that I can go back and look through it. It is good to know however, because if you generate a lot of output to the screen and need to sort through small sections at a time, clear can often help make that more manageable.
-
-### redirection
-
-
-### cat  
-The `cat` command is for conCATenating text to the screen, or to the end of a file. In short, cat takes standard input and turns it into standard output. If you are familiar with c++ at all then that should remind you of cin and cout which would be good, but not really needed. Starting with the easiest and most common use of `cat`, outputting the contents of a file.
-lets say a file called "textFile.txt" exists and the contents are "This is a text file". If you rand the command
-```
-$ cat textFile.txt
-```
-the output to the terminal would be:
-```
-This is a text file
-```
-
-In this case, the input is the "textFile.txt" and the output goes to the terminal. Now understand that the input to cat can be anything, and the output can go to other places than the terminal via the redirection tools. Before actually trying to understand the redirection aspect, I highly recommend using `cat` on a `.txt` file. After that, run the `cat` command, input some text and hit enter. Every time you input some text and hit enter, it will output to the screen. If in the first example the input is the file and the output is the screen, then the second takes user input, and outputs it to the screen. 
-
-### less and more   
-
-### Text editors 
-There are a plethora of of text editors that are useable in a terminal environment. If you take the time to learn these text editors, you may find that they are faster than their modern counter parts. The two main terminal based text editors are Vi and emacs, but there is also nano. 
-
-#### limitations
-Text editors in the terminal have some limitations that modern text editors like Microsoft Word, Google docs, VSCode and notepad don't have. 
-
-#### Vi, Vim, Nvim
-#### nano
+c) Move the "temp.out" into the "temporary" directory.  
+d) Move the "RandomFile" into the directory "A/Simple/Directory"  
+e) Rename "customBashScript.sh" to "bashScript.sh"  
 
 ### tree  
 \#Linux User Rant\#  
@@ -403,9 +343,173 @@ $ tree --charset=ascii
 ```
 
 
-### Find in Man Page 
-a) If `tree -h` displays the size of a file or directory in a human readable fashion, how would you display it in a human unreadable fashion? (Your looking to print an exact size in bytes)
+### Find in Man Page tree and ls
+a) If `tree -h` displays the size of a file or directory in a human readable fashion, how would you display it in a human unreadable fashion? (Your looking to print an exact size in bytes)  
 b) The `ls -l` command also lists the size of the file. Another way to show the size of files would be using the `ls -s` command. As you can imagine, the `-s` stands for size. Since tree has a flag to make file sizes human readable, it stands to reason that ls does as well. What is this flag? What other flags would be needed to make use of this human readable flag?
+
+
+### cp  
+CoPy or `cp`, does exactly what you think. It copies a file and it's contents from one file into a brand new file. Similar to `mv`, it takes two arguments, a source and a destination. Just like `mv`, you have to have the correct name of the source, but the destination can be what ever you want. 
+
+Going back to this example:
+```
+~/
+|-- Directory1
+|   |-- File1
+|   |-- File2
+|   `-- File3
+`-- File4
+```
+If you were to run the following from the `~/` directory:
+```
+$ cp Directory1/File1 .
+$ cp File4 Directory6/File6
+```
+you would get:
+```
+~/
+|-- Directory1
+|   |-- File1
+|   |-- File2
+|   |-- File3
+|   `-- File6
+|-- File1
+`-- File4
+```
+File1 and File5 will be the same as well as File2 and File6. Nice and simple and works in a very similar way to mv, in terms of use.  
+Note that the `.` in the destination will imply that you want to keep the name exactly the same.
+
+### rm 
+The `rm` command is in charge of ReMoving files, or essentially deleting them. This tool runs counter to the `touch` and `mkdir` that are in charge of making new files and directories. It is important to know that once you run the `rm` command, you can't take it back. There is no ctrl+z, there is no undo and there is no recovering files deleted with rm. Take the following files:
+```
+~/
+|-- Directory1
+|   |-- File1
+|   |-- File2
+|   |-- File3
+|   `-- File6
+|-- File4
+`-- File5
+```
+Here are a few example of how to use the `rm` command:
+
+```
+$ rm Directory1/File1
+$ rm Directory1/File2 /home/user/File4
+$ rm -rf Directory1
+```
+If you ran all these commands you would get this result:
+```
+~/
+`-- File5
+```
+The relative and absolute paths as well as deleting more than one file at a time are what the first two commands are supposed to show. Deleting directories requires flags that have caused much harm to many a new Linux user over the years. 
+
+#### -r, -f and -rf WARNING
+When you are removing individual files, you only have to make sure that you are removing the correct files. When you delete a directory, you should be very careful that you aren't deleting anything important. Randomly copying `rm -rf` commands and pasting them into your terminal is a bad plan. Linux had to add counter measures to the famous `rm -rf /` command that literally deletes your entire system. If you want to delete your entire system, there is a flag that you have to include: `--no-preserve-root`. The `-r` stand for recursive, which is what allows the `rm` command to delete files in directories and directories in directories. The `-f` flag is what force the system to actually run the command on all of the files and directories. The `-f` flag is to help make sure that you do not delete important files by accident. When these two flags are combined, you will delete all files and directories in the specified directory. Be very careful when using `rm -rf`, and make sure that it is doing what you want it to, because there is not really a good way to get it back.
+
+### Exercise Removing
+Start in `~/exercises/remove/`.  
+
+a) You have decided to delete the directories `There` and `these`. The first thing you should do is get familiar with what you are deleting. You can use `cd` and `ls` until you are sure everything is actually good to delete, or you can just use the `tree` command.   
+b) Remove `notImportant.txt`.    
+c) Remove the `these`, as well as all the subdirectories and files.   
+d) Save a backup of the `VALUABLEfile.txt`, then delete the `There` directory and all it's subdirectories and files.   
+
+### Find in man page rm
+You know that the `-r` and `-f` flags can be dangerous, especially when paired together. Since you already know what these flags do for the `rm` command, look at what the man page has to say about them. Connect how those flags are worded on paper to how dangerous they are in practice.
+
+
+### clear 
+By simply entering `clear` into the terminal, it clears the screen. A lot of people like to work with their terminal from the top and clear the screen a lot. Personally, I like having previously run commands and their results in the terminal so that I can go back and look through it. It is good to know however, because if you generate a lot of output to the screen and need to sort through small sections at a time, clear can often help make that more manageable.
+
+
+### cat  
+The `cat` command is for conCATenating text to the screen, or to the end of a file. In short, cat takes standard input and turns it into standard output. If you are familiar with c++ at all then that should remind you of cin and cout which would be good, but not really needed. Starting with the easiest and most common use of `cat`, outputting the contents of a file.
+lets say a file called "textFile.txt" exists and the contents are "This is a text file". If you rand the command
+```
+$ cat textFile.txt
+```
+the output to the terminal would be:
+```
+This is a text file
+```
+
+In this case, the input is the "textFile.txt" and the output goes to the terminal. Now understand that the input to cat can be anything, and the output can go to other places than the terminal via the redirection tools. Before actually trying to understand the redirection aspect, I highly recommend using `cat` on a `.txt` file. After that, run the `cat` command, input some text and hit enter. Every time you input some text and hit enter, it will output to the screen. If in the first example the input is the file and the output is the screen, then the second takes user input, and outputs it to the screen.  
+
+If you just run the `cat` command by it's self, it takes user input and outputs that same input. Pressing the enter key is how the command knows where the output lines are. That may not seem very useful on it's own but it can be pretty powerful. It is important to remember that `ctrl+c` will stop the command. Here is an example:
+```
+$ cat
+Totally valuable
+Totally valuable
+Eh, maybe
+Eh, maybe
+```
+Highly recommend trying it out on your own.  
+
+### redirection operator "<" ">" ">>"
+These three are the most basic forms of redirection, and are still very useful despite their apparent simplicity. In practice, they are often used in conjunction with `.txt` files. Here is the formatting for them:
+```
+something < stdin
+stdout > overwritten
+stdout >> appended
+```
+Each of them kind of do exactly what the example might indicate. The `<` operator takes some form of input and feeds it into `something`. Often you will want to input a file into some other command such as:
+```
+$ cat > text.txt
+```
+Obviously a silly example, but replace `cat` with a more useful command, and you have input that in the form of a file.
+
+The `>` operator overrides target with while the `>>` operator appends the target. In practice, this distinction does not always matter but it can. It is worth remembering the difference. Take the following:
+```
+ls > ls.output
+ls >> ls.output
+ls > ls.output
+```
+If you ran all three of these commands in sequence, `ls.output` would have one set of output at the end of the first execution, two at the second command, and just one at the end of the third.  
+
+### Exercise cat and redirection 
+Start in the `~/exercises/catRedirection` directory.
+
+a) Check the contents of `testfile.txt`. I recommend using the `cat` command to see the contents of the file.  
+b) Let's say you decided that you want to add text to the file. In preparation of making a mistake, make a copy of `testfile.txt`. As long as you copy the file to a backup, that is fine, but I recommend that you try and come up with two different ways to copy the file.  
+c) Use the `cat` command and redirection to add text to `testfile.txt`, without deleting anything that is already there. When you are done, don't forget to use `ctrl+c`.  
+d) Use `cat` and redirection to make `testfile.txt` match what ever the backup you made. The end result should be exactly how `testfile.txt` was originally.  
+
+### Piping with "|"
+One of the most powerful tools available to you on the Linux Command line is the `|` operator. What it does is it takes the output of one command and feeds it into the next. Here are some general example of what that looks like:
+```
+Command 1 | command 2 
+Command 1 | command 2 | command 3 | command 4
+```
+In the firsts example, `Command 1`'s output is fed into `command 2`. This can be repeated as much as you want and the previous commands output will be fed into the next command.
+
+As you become more used to the tools available to you on Linux, this "Piping" technique becomes more useful. One example that we will get into later is with grep. Going forward however, try and think about how two commands could relate to each other because the `|` operator often makes that possible.
+
+### less  
+Pretty much everything that applies to using man pages also applies to `less`. Man pages by default use the `less` interface so hopefully you are already familiar with actually using this tool. `less` takes text and outputs it to the screen. This text could come from anywhere, but the two most common are large files and commands that output a lot of information. 
+
+### Text editors 
+There are a plethora of of text editors that are useable in a terminal environment. If you take the time to learn these text editors, you may find that they are faster than their modern counter parts. The two main terminal based text editors are Vi and emacs, but there is also nano. 
+
+#### limitations
+Text editors in the terminal have some limitations that modern text editors like Microsoft Word, Google docs, VSCode and notepad don't have. The first and most off putting for most people is that most of these terminal based text editors were not designed with mice in mind. This can make copy and pasting directly tricky. This may sound like a really big limitation, but it really isn't as I will show in just a moment. The important part to remember is that for the small price of making direct copy and pasting a little bit harder, you get access to a lot of powerful functionality not often found in modern text editors. 
+
+Here are the things that I think are required to know when you use a text editor:
+how to add text
+how to save
+how to copy
+how to paste
+how to quit
+how to search
+how to find and replace
+
+I Will go over how to do these 7 things in two of the more well known text editors that are usually included by default on linux in some form. 
+
+#### Vi, Vim, Nvim
+
+#### nano
+
 
 ### grep 
 #### wildcards 
@@ -428,6 +532,10 @@ Some of the more frequent flags that would be needed are the following:
 The `-v` flag will show the kernel version. Since all Linux based systems are forked from the Linux Kernel, this will usually be a good way to figure out what specific distribution you are working on. There are other ways that will be covered later that are better, but this is a fairly easy one to keep track of.
 
 When the `-p` flag is used, uname will show the architecture of the processor. At the time of writing, this will likely be some form of x86_64.
+
+
+### Find in man page uname
+Find and read all three of `-n -v -p` flags in the man page. Compare those entries to `uname --help` command. Which do you like better? 
 
 ### accounts
 In case it needs to be stated, a user is someone interacting with an operating system such as Windows, Mac OS or Debian. A user does so through an account, and this section will go through some of the basics of accounts. On commercial Windows, there are really only two types of accounts, regular users and administrators. Permissions for linux accounts at a surface level is just as simple. There are regular accounts such as "user" on your vm, and then there is root. Root is the highest privileged account on your system. 
@@ -458,15 +566,12 @@ Once you have switched users and run the needed commands, there are a few ways i
 #### whoami  
 If you ever forget what user you are currently logged into, running the command `whoami` will output the current user. There is nothing else to this command, it just outputs the user that is currently logged in.
 
+### Find in man page whoami
+Not all man pages are hard to understand. Some commands are less complicated than others. The `whoami` command is pretty simple, so check out the man page to see that not all man pages are hard to understand. How many different options are there?
+
 #### sudoers  
 Another way to get temporary elevated privileges that does not require switching accounts is to start the command with `sudo` or "Super User DO". It is worth noting that `sudo`, while useful is not on all Unix based systems. It is possible that in the future `sudo` will be replaced with `run0`. For now, I will only be going over sudo because of how prolific it is. It is worth noting that the main reason `sudo` would get replaced is because it is bulky and configuring sudo is not something standard users care about.  
 
-To make your `user` account allowed to use `sudo`, you need to add `user` to the sudoers file, which is `/etc/sudoers`. For this exercise, just copy and past the root permissions such that you have this:
-```
-root ALL=(ALL:ALL) ALL
-user ALL=(ALL:ALL) ALL
-```
-This will make it so that the `user` account can use the `sudo` command to do anything. In a professional environment, this may be a bad idea, but for a private computer it's just fine.
 
 ### /etc  
 The `/etc` directory is where most system configurations are. You already know the the sudoers file is in `/etc`, but you will find a lot of other useful files in here. Some what you will find here are the following:
@@ -478,8 +583,36 @@ timezone
 ```
 The `hostname` file simply contains the hostname of the computer. You probably wont ever need to get the hostname from here, but you can. If you want to change the hostname, this is one of the files that you should expect to change as a result.
 
+Despite what the file `passwd` might indicate with it's name, it does not contain any passwords in the file. If you forget a password to an account you create, you wont find it here. You will however find all the users that are on the computer. Most of these users you will never log into
+
+### Exercise add user to the sudoers file
+This exercise is going to be a bit different than the others. There is nothing in the `~/exercises` directory for this exercise. I will be telling you exactly what to do for this one, so try to internalize this process. 
+
+a) run the command `su - root`, the password is "toor", which is just root backwards.  
+b) now that you have elevated privileges, go to the `/etc/` directory.  
+c) use your preferred text editor to edit the `sudoers` file. The two obvious examples are:
+```
+$ nano sudoers
+$ vim sudoers
+``` 
+d) I recommend for this exercise that you look for the `root ALL=(ALL:ALL) ALL` line and add `user ALL=(ALL:ALL) ALL`. The end result would look something like this:
+```
+root ALL=(ALL:ALL) ALL
+user ALL=(ALL:ALL) ALL
+```
+If you can't find the right line, just add `user ALL=(ALL:ALL) ALL` to the line just above the `@includedir /etc/sudoers.d` line at the bottom of the page.  
+
+Do make sure that you properly saved the file before exiting.
 
 
+### /proc
+The `/proc` directory is primarily for processes, but there is some pretty useful information that is worth looking at. 
+
+```
+cpuinfo
+meminfo
+version
+```
 
 #### warnings about chmod 777 and chown 777
 With great power comes great responsibility. When you are given the power to make any change to the system and the system will let you, it can be easy to expose your computer to danger. Some of the more important commands to look out for are CHange OWNer and CHange MODe (`chown` and `chmod`). If something online says to `chmod` or `chown` a file or directory, be very carful, especially with 777. When you run `ls -l` you get output like this:  
@@ -495,7 +628,7 @@ This is how the 777 relates to the permissions:
 In the same way that three bits has eight combinations of numbers, there are eight ways to configure permissions. A "000" would be no one is allowed to do anything with this file/directory. Adding one would allow for "execute", adding two allows for "write" and adding four adds "read" permissions. When you want to have more than one of those three privileges just add the ones you want together.
 
 ### Exercise 777 meaning
-Starting with `0 = ---` being correct, show that you can make all 8 combinations of permissions with the following key:  
+Starting with `0 = ---` being correct, show on a piece of scratch paper or another device that you can make all 8 combinations of permissions with the following key:   
 1 = x  
 2 = w  
 4 = r 
@@ -541,6 +674,10 @@ basic apt
 Setting Up a Basic Desktop  
 These sections are some of the most useful for learning how to use Linux, I do recommend getting connected to the internet.
 
+### Find in man page ip
+For this exercise, you don't have to read anything outside of the synopsis. Run the command: `man ip`. I will not go over any of the OPTIONS, so focus on looking at the objects. This is where you will find "address". It doesn't say it in they synopsis, but the "show" from earlier goes in the place of COMMAND. Notice how "help" is also in that same set of {}'s. If you want help with specifically `ip address`, you can run `ip address help`. This changes the default behavior of `show` to `help`.
+
+
 ### Package manager  
 Package managers are how you install software on Linux distributions. When you want to get packages for a new desktop or a different programming language, you get it through a package manager. Getting a `.zip` from a website or more accurately a `.deb` or a `.tar` which are compressed files on Linux is uncommon. You typically want to get your software from your package manager, which does have it's advantages which we will go over in the "basic apt" section.
 
@@ -567,16 +704,19 @@ Every time you do anything with a package manager, you should update and upgrade
 I can not emphasize how important updating and upgrading are to do before doing anything else with a package manager. Finding the right package is a skill, but the internet can help. You should expect to learn how to the `apt search`, `apt list` and `apt cache` at some point but it is not necessary starting skill of the Linux experience. If you want to start learning these parts of the `apt`, it is worth noting that because the `apt` has a reference to all it's repositories on the machine, you do not need elevated privileges to search for specific packages.
 
 After updating, upgrading and finding the right package, you will either want to install or uninstall that package from your machine. All you have to do is run the command with `install` or `remove`. If installing a package require other packages, it will ask if that is okay and require a confirmation in the form of a "y". If you enter an "n", that indicates that you are not okay with installing the required packages and will abort the install. `remove` is how you uninstall the packages and has a similar process for deleting the required packages.
-  
 
-### tar
-`tar` stands for Tape ARchive, and is an old form of compression. Much like the compression software `7zip` that you may be familiar with, `tar` is one of the primary ways to extract and compress files on Linux. The main things you need to know about `tar` are the flags for compression and extraction. Here are some examples:
+### Exercise using apt
+This exercise will require elevated privileges and can be done anywhere. I recommend that before you start installing random packages, you look up what they are and what they do. Here are the packages that I want you to install:
 ```
-tar -cf compressed.tar /uncompressed
-tar -x
+cmatrix
+sl
+fortune
+cowsay
 ```
+a) Install all four of these packages using `apt install`.   
+b) Uninstall the `cmatrix` package. If you decided that you do want it, you can always reinstall it later.
 
-## Advanced
+## Freeform
 
 
 
