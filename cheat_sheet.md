@@ -177,6 +177,31 @@ $ cd /etc/
 $
 $ vim sudoers
 ```
+### Exercise grep
+Start in the `/proc/` directory.
+
+a) Use grep to list the lines with "model" in cpuinfo.  
+b) Use grep to list the lines with "id" in cpuinfo.  
+c) Use grep to list the lines with "cpu" in cpuinfo. 
+d) Do a-c again but this time print one line above and below.
+e) Do a-c again but this time only print lines without the given word.  
+
+```
+$ grep cpuinfo -e "model"
+$
+$ grep cpuinfo -e "id"
+$
+$ grep cpuinfo -e "cpu"
+$
+$ grep cpuinfo -e "model" -A 1 -B 1
+$ grep cpuinfo -e "id" -A 1 -B 1
+$ grep cpuinfo -e "cpu" -A 1 -B 1
+$
+$ grep cpuinfo -e "model" -v
+$ grep cpuinfo -e "id" -v
+$ grep cpuinfo -e "cpu" -v
+```
+
 
 ### Exercise 777 meaning
 Starting with `0 = ---` being correct, show on a piece of scratch paper or another device that you can make all 8 combinations of permissions with the following key:  
@@ -241,4 +266,21 @@ $ sudo apt install fortune
 $ sudo apt install cowsay
 $
 $ sudo apt remove cmatrix
+```
+
+
+### cowsay and fortune
+
+For the actual problem:
+```
+fortune | cowsay
+```
+
+For the `cowsay` challenge:
+```
+fortune | cowsay -f dragon
+```
+For the `fortune` challenge:
+```
+fortune /usr/share/games/fortunes/riddles
 ```

@@ -1,18 +1,18 @@
 # A Guided Walkthrough of Linux
 
 
-### Table of Contents
+## Table of Contents
 
 ##   Purpose
-### Linux User Rants
+
 
 ##  The Basics 
-Files are files, extensions don't matter 
 
 ### History and Ecosystem of Linux
+The very abridged version of the history of Linux is that it was initially only developed by a single guy named Linus Torvalds. At the time, Unix was king of the market, and Torvalds decided to make an open-source Unix clone. Linux is not an operating system but a kernel. The "Linux operating system" has lost popularity over the years in favor of building an operating system on top of the Linux kernel. In the Linux community, these operating systems that share the Linux kernel are called "Distributions" or "Distros" for short. Some of the most common distros are Ubuntu, Debian, Arch, and Fedora. The easiest to learn is Ubuntu, but Debian and Fedora are not much harder and have generally been better in my experience. In this guide, you will be using Debian.
 
-### Basics of Files and Their Structure //subdirectories
-Before there is anything to talk about in terms of details in Linux, one of the most important notions to grasp is that everything is a file. Files are files, executables are files, folders or directories as they are known on linux are files. The beginning of the linux file system is `/`, and is called the root directory. Every file (including directories) is located somewhere on the file system in relation to the `/` directory. For the most part the root directory looks something like this:
+### Basics of Files and Their Structure
+Before there is anything to talk about in terms of details in Linux, one of the most important notions to grasp is that everything is a file. Files are files; executables are files, and folders are called directories on Linux and are files. The beginning of the Linux file system is `/,` and it is called the root directory. Every file (including directories) is located somewhere on the file system in relation to the `/` directory. For the most part, the root directory looks something like this:
 ```
 /bin
 /boot
@@ -28,28 +28,27 @@ Before there is anything to talk about in terms of details in Linux, one of the 
 /usr
 /var
 ```
-All these and more are found on linux systems by default. There is a lot of useful stuff in this directory, but the only ones that are needed for this guide are the following:
+All these and more are found on Linux systems by default. There is a lot of helpful stuff in this directory, but the only directories that you need for this guide are the following:
 ```
-/bin
 /etc
 /dev
 /home
 /root
 /proc
 ```
-Each of these directories will get some level explanation at various points in the guide, and any file or directory path that starts with a `/` is referred to as an absolute path. If a path doesn't start with a `/` then it starts from the directory you are currently in and is referred to as a relative path.
-Directories in directories or files in directories are separated with a "/". For example, in the `/home/user` file path, `/` indicates that starting from the root directory, go into the `home` directory and then go into the `user` directory. The file path `/home/user/executable.exe` is the same idea, but also take the executable.exe inside the user directory.
+The guide will explain each of these directories at various points. Any file or directory path that starts with a `/` is called an absolute path. If a path doesn't start with a `/`, it starts from the directory you are currently in and is a relative path.
+Directories in directories or files in directories are made separate with a "/." For example, in the `/home/user` file path, `/` indicates that starting from the root directory, go into the `home` directory and then go into the `user` directory. The file path `/home/user/executable.exe` is the same idea, but also take the executable.exe inside the user directory.
 
-The last thing that is worth knowing in terms of file paths are `.` files. These are by default hidden but are important to know exist. A `.` represents this directory, and `..` represents the previous directory. So if you are in `/home/user`, the `.` directory is `/home/user` and the `..` directory is the `/home` directory, and the `../..` directory is the `/` directory. 
+The last thing that is worth knowing in terms of file paths is `.` files. These are by default hidden but are important to know exist. A `.` represents this directory, and `..` represents the previous directory. So if you are in `/home/user`, the `.` directory is `/home/user` and the `..` directory is the `/home` directory, and the `../..` directory is the `/` directory. 
 
-An important concept to grasp is the idea of environment variable. The Bourne Again SHell or BASH keeps track of some useful information that is stored in variable denoted with a `$`. An important variable that will be needed throughout the guide is the `$HOME` Environment variable. In general, these variable with be paths to files or directories. The `$HOME` leads specifically to what is called the home directory or simply "home", that is in the `/home/user`. Any user has their own home directory, but that will be covered more in the intermediate section. While there are many ways to find your home directory, another way that is a bit easier to use is the `~/` is shorthand for the home directory.
+An important concept to grasp is the idea of environment variables. The Bourne Again SHell or BASH keeps track of useful information stored in variables denoted with a `$`. An important variable you will need throughout the guide is the `$HOME` Environment variable. The `$` variables will generally be paths to files or directories. The `$HOME` leads to the home directory or simply "home" in the `/home/user`. Any user has their own home directory, which will be covered more in the intermediate section. While there are many ways to find your home directory, another way that is a bit easier is the `~/` shorthand for the home directory.
 
-### auto complete
-One of the most important parts of using a terminal that is easy to overlook is auto complete. Any time you enter any command, especially longer ones, pressing tab will automatically complete the rest of the word you are typing. For example, if you want to type the following:
+### autocomplete
+Autocomplete is one of the most important parts of using a terminal that is easy to overlook. Any time you enter any command, especially longer ones, pressing the tab will automatically complete the rest of the word you are typing. For example, if you want to type the following:
 ```
 cd ~/The/Most/Annoying/Directory/That/Ever/Existed/Nothing/Can/Even/Compare
 ```
-What this kind of command does will be explained later, the important part is that is a lot of typing. What I actually type for a command like this would be something more like this (The new lines are for clarity not actually input):
+What this kind of command does will be explained later; the important part is that it is a lot of typing. What I actually type for a command like this would be something more like this (The new lines are for clarity, not actually input):
 ```
 cd ~/T[tab]
 Mo[tab]
@@ -63,7 +62,7 @@ A[tab]
 [tab]
 [tab]
 ```
-There are four main situations when you try to auto complete. The first option is that there is only one option available. In this case, pressing tab will fill in the rest. The `T[tab]` section fills out to `The/`. The second option is that even though you have not input anything, there is only one option available. Most of the example demonstrates this, for example the fourth [tab] would expand to `Directory/`. The third and fourth cases are when there is more than one option available to auto complete when the [tab] key is pressed or there are no options. You can press the [tab] key twice in quick succession to show all the available options. If the double [tab] press shows nothing, then there are no available options.
+There are four main situations when you try to auto-complete. The first option is that there is only one option available. In this case, pressing the tab key will fill in the rest. The `T[tab]` section fills out to `The/`. The second option is that even though you have not input anything, only one option is available. Most examples demonstrate this; for example, the fourth [tab] would expand to `Directory/`. The third and fourth cases are when there is more than one option available to auto-complete when you press the [tab] key or there are no options. You can press the [tab] key twice quickly to show all the available options. If the double [tab] press shows nothing, there are no options available.
 
 ### Extra help and manuals
 
@@ -74,21 +73,21 @@ There are four main situations when you try to auto complete. The first option i
 
 
 ### pwd
-The Print Working Directory or `pwd` command prints the directory you are currently working in starting from the root directory. When you log into a linux terminal, the original starting point is the `$HOME` directory of the user that was logged into. In this case, that is `/home/user`. When you go to other directories such as `/etc`, pwd will print that directory. There is some subtleties to this command but for the most part it is a simple print where I am on the system.
+The Print Working Directory or `pwd` command prints the directory you are currently working in starting from the root directory. When you log into a Linux terminal, the original starting point is the `$HOME` directory of the user you logged into. In this case, that is `/home/user`. When you go to other directories such as `/etc`, `pwd` will print that directory. There are some subtleties to this command, but for the most part, it is a simple print where I am on the system.
 
 ### ls
-LiSt or `ls` is a command that lists the contents of the working directory. Normally, when you create a fresh install of linux or create a new user, this command will show that the home directory is empty for the most part. However, if you run the `ls` command on this particular system's home directory, you will find most of the exercises that will be used throughout this guide. 
+LiSt or `ls` is a command that lists the contents of the working directory. Usually, when you create a fresh install of Linux or create a new user, this command will show that the home directory is empty for the most part. However, if you run the `ls` command on this particular system's home directory, you will find most of the exercises you will use throughout this guide. 
 
-The `ls` command has many important aspects that all relate to listing available file in a directory. It is worth remembering the following as all are very useful:
+The `ls` command has many important aspects relating to listing available files in a directory. It is worth remembering the following as all are very useful:
 ```
 $ ls -a
 $ ls -l
 $ ls -al
 ```
-When the `ls -a` command is run, the out put will be all the files including hidden files. A hidden file starts with a period such as `.filename` and a hidden directory is something like `.directory`. The `ls -l` command shows a "long list" which comes out to be extra information about the files and directories. The permissions, file size and date last opened are all visible in the long list. The last command `ls -al` or `ls -la`, is simply combining the `-l` and `-a` commands into a single flag. All that using both flags does, is make both take affect when the command runs so you get to see both hidden files and the longer list.
+When the `ls -a' command is run, the out put will be all the files including hidden files. A hidden file starts with a period such as `.filename` and a hidden directory is something like `.directory`. The `ls -l` command shows a "long list" which comes out to be extra information about the files and directories. The permissions, file size and date last opened are all visible in the long list. The last command `ls -al` or `ls -la`, is simply combining the `-l` and `-a' commands into a single flag. Using both flags makes both take effect when the command runs so that you can see both hidden files and the longer list.
 
 ### cd
-The `cd` command does exactly what it says on the tin. It changes the directory that you are currently in to another directory that is passed as the first argument. A couple examples include:
+The `cd` command or "Change Directory" does exactly what it says on the tin. It changes the directory you are currently in to another directory, which is the first argument. A couple of examples include:
 ```
 $ cd
 $ cd ~/
@@ -100,20 +99,20 @@ $ cd ~/a/ridiculous/directory
 $ cd ~/a/../a/./ridiculous/../ridiculous/directory/./././../directory
 ```
 
-The explanations for each of these symbols can be found in the "Basics of Files and Their Structure" section. The important things related to the `cd` command specifically that trip a lot of new linux users up is the specifics that are only a little different.
+You can find explanations for each of these symbols in the "Basics of Files and Their Structure" section. 
 
-The first command takes you to the home directory. It should be noted that one of the most important commands in the linux system by default takes you to the home directory and not a desktop folder. There is a lot of significance to the home directory that should be pretty clear by how many different ways have already been discussed that reference it.
+The first command takes you to the home directory. It should be noted that one of the most important commands in the Linux system, by default, takes you to the home directory and not a desktop folder. The home directory is very significant, and the many different ways that have already been discussed that reference it should make this pretty clear.
 
-The second and third commands are different ways to get to the home directory. The fourth is to get to the root directory. And then the fifth command usually trips people up. It changes the directory from your current directory, `/`, to `/home/user`. For this command to work, you have to be in the correct directory. 
+The second and third commands are different ways to access the home directory. The fourth is to get to the root directory. The fifth command usually trips people up. It changes the directory from your current directory, `/`, to `/home/user`. For this command to work, you have to be in the correct directory. 
 
-It would be a good idea to try and run some of the commands discussed above before continuing. Like most things worth doing, Bash commands and terminal movement takes practice.
+Before continuing, it would be a good idea to try running some of the commands discussed above. Like most things worth doing, Bash commands and terminal movement take practice.
 
-The sixth and seventh cd commands listed are very similar and the meanings you should be able to identify the difference. The sixth takes you to `a/ridiculous/directory` relative to your current directory. The seventh does the same thing, but is starting from the home directory.
+The sixth and seventh `cd` commands listed are very similar, and you should be able to identify the difference in their meanings. The sixth takes you to `a/ridiculous/directory` relative to your current directory. The seventh does the same thing but starts from the home directory.
 
-The eighth is trying to demonstrate the `.` and the `..` directory. Try and follow the command and determine which directory you are in after each `/`. 
+The eighth tries to demonstrate the `.` and the `..` directory. Try and follow the command and determine which directory you are in after each `/`. 
 
 ### Exercise cd/ls/pwd  
-Once logged onto the Debian vm,   
+Once logged onto the Debian VM,   
 a) print your working directory  
 b) list all the contents of the directory  
 c) then change your directory to the `exercises`   
@@ -122,13 +121,13 @@ e) print your working directory.
 From this point on, All exercises will start in this directory.
 
 ### Find in Man Page ls
-What does the man page say that the `-a` flag does for the command `ls`? What about the `-l` flag?
+What does the man page say that the `-a' flag does for the command `ls`? What about the `-l` flag?
 
 ### Exercise autocomplete
-Change your Directory to the `~/exercises/autoComplete/` directory.
+Change your directory to the `~/exercises/autoComplete/` directory.
 
 a) Change your directory to: `The/most/Annoying/directory/That/EVER/Existed/Possibly/ever/But/I/Guess/There/Could` 
-I highly recommend using auto complete and not typing all that out.
+I recommend using auto-complete and not typing all that out.
 
 
 
@@ -138,11 +137,11 @@ When you look at the terminal, you will see something like the following:
 user@ahostname:~$
 root@ahostname:/proc#
 ```
-Everything before the `@` symbol is the user that is currently logged in. Everything between the `@` and the `:` symbols is the hostname. Everything between the `:` and either the `#` or the `$` is the current directory. The first two parts are pretty much always part of any command prompt, which is after the `#` or the `$` where you input commands. The `$` is usually used to denote a standard user. The `#` is usually used to denote either root or superuser privileges. 
+Everything before the `@` symbol is the current user. The hostname is everything between the `@` and the `:` symbols. The current directory is everything between the `:` and either the `#` or the `$`. The first two parts are always part of any command prompt, after the `#` or the `$` where you input commands. The `$` is usually used to denote a standard user. The `#` is usually used to denote either root or superuser privileges. 
 
 
 ### touch  
-The `touch` command has two main use cases: updating the time stamp of a file, and creating a file. Lets say that this is what your home directory looks like:
+The `touch` command has two main use cases: updating the time stamp of a file and creating a file. Let's say that this is what your home directory looks like:
 ```
 ~/
 |-- File1.txt
@@ -150,9 +149,9 @@ The `touch` command has two main use cases: updating the time stamp of a file, a
 `-- File3.txt
 ```
 
-First, you could update the time stamps of File1.txt, File2.txt, File3.txt. This may not seem very useful at face value, however some assumptions about a file with an older time stamp can be made by computers. A classic example is that `makefile` or `make` will skip files that have not changed since the last time it was "made". That may not make to much sense for now, but the important part is that there are times when all you need to do is update a time stamp for a program to work.
+First, you could update the time stamps of File1.txt, File2.txt, and File3.txt. This may seem like it is not very useful at face value. However, some assumptions about files with old timestamps can lead to confusion between computers and users. A classic example is that `makefile` or `make` will skip files that have not changed since the last time it was "made." That may not make much sense for now, but the important part is that there are times when all you need to do is update a time stamp for a program to work.
 
-However, most of the time when you are starting out touch is used to create an empty file. Using the example from earlier, if `touch` was used in these ways:
+However, when you start out, `touch` is used to create an empty file. Using the example from earlier, if `touch` was used in these ways:
 ```
 $ touch File4.txt
 $ touch File5.txt File6.txt File7.txt
@@ -168,15 +167,15 @@ The result would be:
 |-- File6.txt
 `-- File7.txt
 ```
-Notice that you can pass multiple files into `touch` and each of them will be created as long as there is a space separating them.
+Notice that you can pass multiple files into `touch`, and the computer will create each one if a space separates them.
 
 ### mkdir  
-Now that you can make files, time to start organizing them into different directories. `mkdir` stands for MaKe DIRectory. This is the primary way in which files are separated on Linux, and is similar to folders on Windows or Mac. Typically, all `mkdir` is used in the following way:
+Now that you can make files, it's time to start organizing them into different directories. `mkdir` stands for MaKe DIRectory. `mkdir` is the primary way you organize files on Linux. Directories are similar to folders on Windows or Mac. Typically, all `mkdir` is used in the following way:
 ```
 $ mkdir DIRECTORY
 ```
 
-In practice, you would replace "DIRECTORY" with descriptive names that are easy to remember. A common pitfall for new linux users is to include spaces in their directory and file names. While this can be done, I would suggest following a naming convention such as but not limited to one of the following:
+In practice, you would replace "DIRECTORY" with descriptive names that are easy to remember. A common pitfall for new Linux users is to include spaces in their directory and file names. While you can do this, I would suggest following a naming convention such as but not limited to one of the following:
 ```
 this_is_snake_case
 this-is-skewer-case
@@ -190,20 +189,20 @@ mkdir this-is-skewer-case
 mkdir thisIsCamelCase
 ```
 
-If you chose to include spaces in your files paths, let me know ahead of time so I don't have to watch. What you have to do every time there is a space, you also have to include a `\` before it. There are other ways but that is the main one. Over all, it is better to use any naming convention instead of spaces.
+If you choose to include spaces in your file paths, prepare to suffer because you denote a space in file paths with `\ `. What you have to do every time there is a space, you also have to include a `\` before it. There are other ways but that is the main one. Overall, it is better to use any naming convention instead of spaces.
 
-A useful tip is if you want to create multiple directories in one go is to include the `-p` flag. The intuitive thing to do is 
+A useful tip to create multiple directories in one go is to include the `-p` flag. The intuitive thing to do is 
 ```
 $ mkdir DIRECTORY/INADIRECTORY
 ```
-where you first make DIRECTORY and then put INADIRECTORY inside of DIRECTORY. By default however, mkdir will see this as an attempt to make the INADIRECTORY inside the presumed to be existing DIRECTORY. To get more value out of `mkdir`, you can do this instead:
+Where you first make DIRECTORY and then put INADIRECTORY inside of DIRECTORY. By default, however, mkdir will see this as an attempt to make the INADIRECTORY inside the presumed to be existing DIRECTORY. To get more value out of `mkdir`, you can do this instead:
 ```
 $ mkdir -p DIRECTORY/INADIRECTORY
 ```
-This will make DIRECTORY and also make put INADIRECTORY into DIRECTORY.
+This will make DIRECTORY and also put INADIRECTORY into DIRECTORY.
 
 ### mv  
-MoVe or `mv` is the command for moving files around as well as renaming them. `mv` takes two arguments, a target and a destination. A lot of the time, `mv` commands look like this:
+MoVe, or `mv`, is the command for moving files around and renaming them. `mv` takes two arguments, a target and a destination. A lot of the time, `mv` commands look like this:
 ```
 $ mv TARGET DESTINATION
 ```
@@ -237,7 +236,7 @@ If you were to run these three commands, they would all move their respective fi
 `-- File4
 ```
 
-Notice that while we used the same name for each file that was moved, that does not have to be the case. The file does not even have to change directories, you can essentially move in place to change the name of a file. It is worth noting that 
+Notice that while we use the same name for each file before and after the `mv` command, that does not have to be the case. The file does not have to change directories; you can move in place to change its name. It is worth noting that `mv` can change the names of files.
 
 Start:
 ```
@@ -264,7 +263,7 @@ Result:
 |-- File3
 `-- File4
 ```
-Notice that Directory1 is empty, and that File1-4 are in the `~/` directory and can be renamed. To rename, you simply move the file to where you want it to be but with a different name. 
+Notice that Directory1 is empty and that File1-4 has been renamed and are now in the `~/` directory. To rename, you simply move the file to where you want it to be but with a different name. 
 
 ### Exercise creation
 Start in the `~/exercises/creation/`.  
@@ -286,7 +285,7 @@ e) Rename "customBashScript.sh" to "bashScript.sh"
 
 ### tree  
 \#Linux User Rant\#  
-Technically, now that you can move through the filesystem at a basic level, you know how to use Linux. Everything after these basics gets into tools to make using these tools easier. A Graphical User Interface (GUI), web browsers, all these things are only accessible after understanding how to interact with your file system and make changes. This is where a lot of windows and apple people argue why should they learn these basics when they can just use the GUI tools that work perfectly well. To that I say when you open file explorer or file finder, from my perspective you have opened your terminal and used the ls command. While there is nothing wrong with the GUI, it has limitations. I believe that tree is the first command that highlights some of these limitations. If you have ever tried to find a specific file, but don't know exactly where it is, tree is one of the first commands I would wish I had when using a GUI to find said file.  
+Technically, now that you can move through the filesystem at a basic level, you know how to use Linux. After these basics, everything gets into tools to make using these tools easier. A Graphical User Interface (GUI), web browsers, all these things are only accessible after understanding how to interact with your file system and make changes. This is where many Windows and Apple people argue why they should learn these basics when they can use the GUI tools that work perfectly well. To that, I say when you open File Explorer or File Finder, from my perspective, you have opened your terminal and used the ls command. While there is nothing wrong with the GUI, it has limitations. I believe that tree is the first command that highlights some of these limitations. If you have ever tried to find a specific file, but don't know exactly where it is, tree is one of the first commands I would wish I had when using a GUI to find said file.  
 \#End of Rant\#
 
 The `tree` command has a similar role to the `ls` command in that it lists the contents of the current directory. It is different in that it also prints of all the directories and files inside all the directories in the current directory. It can look something like this:
@@ -306,7 +305,7 @@ The `tree` command has a similar role to the `ls` command in that it lists the c
 `-- File12
 ```  
 I would encourage you to go to different directories on your vm and run the tree command a few times to get an idea of what kind of output `tree` gives you.  
-Provided that you have done so, you may have noticed that the output of tree can get quite large, or you may not like how it looks, etc. A quick poke through the man page shows the built in ways to filter the output of tree. Here are the ones that I think are useful.
+Provided that you have done so, you may have noticed that the output of the tree can get quite large, or you may not like how it looks, etc. A quick poke through the man page shows the built-in ways to filter the output of the tree. Here are the ones that I think are useful.
 ```   
 $ tree -a 
 $ tree -p
@@ -315,9 +314,9 @@ $ tree -d
 $ tree -L level
 $ tree --charset=ascii
 ```
-Since `tree` is a command that has a similar function to `ls`, you can expect that some of the flags and what they mean to be similar, if not in name in function. A good number of these flags are supposed to remind you of using the `ls -al` command.  
-Starting with the most obvious one, `tree -a` displays all files, including hidden ones. It is worth noting that unlike the `ls -a` command, `tree -a` does not display the `.` or the `..` directories.
-The other two flags that I will mention that relate to the `ls -l` command directly are the `-h` and `-p` flags. The `-h` flag  will print the size of the files and directories with human readability in mind. This means that instead of it just being a big number, the numbers are simplified to 4K, or 2G. For example, take:
+Since `tree` is a command with a function similar to `ls`, you can expect some of the flags and what they mean to be similar, if not in name in function. A good number of these flags are supposed to remind you of using the `ls -al` command.  
+Starting with the most obvious one, `tree -a' displays all files, including hidden ones. It is worth noting that unlike the `ls -a' command, `tree -a' does not display the `.` or the `..` directories.
+The other two flags that I will mention that relate to the `ls -l` command directly are the `-h` and `-p` flags. The `-h` flag will print the size of the files and directories with human readability in mind. The result means that instead of being just a big number, the numbers simplify to 4K, or 2G. For example, take:
 ```
 $ ls -l
 drwxrwxr-x  2 root root      4096 June 13  2022  Directory
@@ -329,27 +328,27 @@ The 4096 from the `ls -l` and the [4.0K] next to the "Directory" from the `tree 
 
 The `-p` flag for the `tree` command is to show the permissions. In the `ls -l` command, the permissions are the first thing printed for each file and directory. For `tree -p`, it is also before each file, just with the extra files that `tree` shows.
 
-One of the flags the helps control how much information is printed is `tree -d`, which only prints directories. There can be value in only printing just the directory structure. Just running the `tree` command can output thgo0 directories and 60,000 files. This is a bit of an extreme example, but it shows how just printing directories can make the broader organization of your system easier to parse.
+One of the flags that helps control how much information is printed is `tree -d', which only prints directories. There can be value in printing only the directory structure. Just running the `tree` command can output 60,000 directories and files. Often, however, you will use `tree` on a smaller scale, which is a very good way to get an idea of the organization of a part of your system on a small scale.
 
-Another way to limit the output of the tree command is to define how many levels of directories it can print with the `tree -L level` command, where level is replaced with a number. If you want to limit the depth that `tree` prints but not limit the files being printed, `tree -L 2` would make it so that only two subdirectories and all their files are printed. The command would not print any deeper than two subdirectories.
+Another way to limit the output of the tree command is to define how many levels of directories it can print with the `tree -L level` command, where you replace the level with a number. If you want to limit the depth that `tree` prints but not limit the files, `tree -L 2` would only print two subdirectories. 
 
 \#Linux User Rants\#  
-When you use the command line enough and have seen enough commands you start to make connections between commands. This happens in much the same way that when you use a gui long enough you get used to the ways in which gui's are organized. An example for me is when I told someone that I didn't use tree very much because of how much output there could be. My friend said that he use the `-L` to limit the number of levels. My response was something like "wow, so you just use -L and a number and you only print that many subdirectories?". I would compare this to the experience one might get from figuring out that you can use ctrl + f or command + f to find but if you use ctrl + h or command + F you can find and replace. This kind of reasoning takes experience and practice, but so does using a gui. The command line once learned however is faster.    
+When you use the command line enough and have seen enough commands you start to make connections between commands. This happens in much the same way that when you use a gui long enough you get used to the ways in which gui's are organized. An example for me is when I told someone that I didn't use `tree` very much because of how much output there could be. My friend said he uses the `-L` to limit the number of levels. My response was, "wow, so you just use -L and a number and you only print that many subdirectories?". I would compare this to the experience one might get from figuring out that you can use ctrl + f or command + f to find, but if you use ctrl + h or command + F, you can find and replace. This reasoning takes experience and practice, as does using a gui. The command line, once learned, however, is faster.    
 \#End of Rant\#  
 
-If you want to change the text to be easier to copy and paste, you can change the character set to something else such as ascii. You could do so with the following:
+If you want to make the text easier to copy and paste, you can change the character set to something else, such as ASCII. You could do so with the following:
 ```
 $ tree --charset=ascii
 ```
 
 
 ### Find in Man Page tree and ls
-a) If `tree -h` displays the size of a file or directory in a human readable fashion, how would you display it in a human unreadable fashion? (Your looking to print an exact size in bytes)  
-b) The `ls -l` command also lists the size of the file. Another way to show the size of files would be using the `ls -s` command. As you can imagine, the `-s` stands for size. Since tree has a flag to make file sizes human readable, it stands to reason that ls does as well. What is this flag? What other flags would be needed to make use of this human readable flag?
+a) If `tree -h` displays the size of a file or directory in a human-readable fashion, how would you display it in a human-readable fashion? (You're looking to print an exact size in bytes)  
+b) The `ls -l` command lists the file size. Another way to show the size of files would be using the `ls -s' command. As you can imagine, the `-s' stands for size. Since `tree` has a flag to make file sizes human readable, it stands to reason that ls does as well. What is this flag? What other flags would be needed to use this human-readable flag?
 
 
 ### cp  
-CoPy or `cp`, does exactly what you think. It copies a file and it's contents from one file into a brand new file. Similar to `mv`, it takes two arguments, a source and a destination. Just like `mv`, you have to have the correct name of the source, but the destination can be what ever you want. 
+CoPy, or `cp`, does exactly what you think. It copies a file and its contents from one file into a brand new file. Like `mv`, it takes two arguments: a source and a destination. Just like `mv`, you have to have the correct name of the source, but the destination can be whatever you want. 
 
 Going back to this example:
 ```
@@ -365,7 +364,7 @@ If you were to run the following from the `~/` directory:
 $ cp Directory1/File1 .
 $ cp File4 Directory6/File6
 ```
-you would get:
+You would get the following:
 ```
 ~/
 |-- Directory1
@@ -376,11 +375,10 @@ you would get:
 |-- File1
 `-- File4
 ```
-File1 and File5 will be the same as well as File2 and File6. Nice and simple and works in a very similar way to mv, in terms of use.  
-Note that the `.` in the destination will imply that you want to keep the name exactly the same.
+File1 and File5 will match, as will File2 and File6. It's nice and simple and works very similarly to mv in terms of use. Note that the `.` in the destination will imply that you want to keep the name exactly the same.
 
 ### rm 
-The `rm` command is in charge of ReMoving files, or essentially deleting them. This tool runs counter to the `touch` and `mkdir` that are in charge of making new files and directories. It is important to know that once you run the `rm` command, you can't take it back. There is no ctrl+z, there is no undo and there is no recovering files deleted with rm. Take the following files:
+The `rm` command is in charge of ReMoving files or essentially deleting them. This tool runs counter to the `touch` and `mkdir` that are in charge of making new files and directories. Know that once you run the `rm` command, you can't take it back is important. There is no ctrl+z, there is no undo and there is no recovering files deleted with rm. Take the following files:
 ```
 ~/
 |-- Directory1
@@ -403,10 +401,10 @@ If you ran all these commands you would get this result:
 ~/
 `-- File5
 ```
-The relative and absolute paths as well as deleting more than one file at a time are what the first two commands are supposed to show. Deleting directories requires flags that have caused much harm to many a new Linux user over the years. 
+The first two commands are supposed to show relative and absolute paths and delete more than one file at a time. Deleting directories requires flags that have caused much harm to many new Linux users over the years. 
 
 #### -r, -f and -rf WARNING
-When you are removing individual files, you only have to make sure that you are removing the correct files. When you delete a directory, you should be very careful that you aren't deleting anything important. Randomly copying `rm -rf` commands and pasting them into your terminal is a bad plan. Linux had to add counter measures to the famous `rm -rf /` command that literally deletes your entire system. If you want to delete your entire system, there is a flag that you have to include: `--no-preserve-root`. The `-r` stand for recursive, which is what allows the `rm` command to delete files in directories and directories in directories. The `-f` flag is what force the system to actually run the command on all of the files and directories. The `-f` flag is to help make sure that you do not delete important files by accident. When these two flags are combined, you will delete all files and directories in the specified directory. Be very careful when using `rm -rf`, and make sure that it is doing what you want it to, because there is not really a good way to get it back.
+When you are removing individual files, you only have to make sure that you are removing the correct files. When you delete a directory, you should be careful not to delete anything important. Randomly copying `rm -rf` commands and pasting them into your terminal is a bad plan. Linux had to add countermeasures to the famous `rm -rf /` command that literally deletes your entire system. If you want to delete your entire system, there is a flag that you have to include: `--no-preserve-root`. The `-r` stands for recursive, which allows the `rm` command to delete files in directories and directories in directories. The `-f` flag is what force the system to actually run the command on all of the files and directories. The `-f` flag is to help make sure that you do not delete important files by accident. When these two flags are combined, you will delete all files and directories in the specified directory. Be very careful when using `rm -rf`, and make sure that it is doing what you want it to, because there is not really a good way to get it back.
 
 ### Exercise Removing
 Start in `~/exercises/remove/`.  
@@ -498,28 +496,89 @@ Text editors in the terminal have some limitations that modern text editors like
 Here are the things that I think are required to know when you use a text editor:
 how to add text
 how to save
+how to quit
 how to copy
 how to paste
-how to quit
 how to search
 how to find and replace
 
 I Will go over how to do these 7 things in two of the more well known text editors that are usually included by default on linux in some form. 
 
 #### Vi, Vim, Nvim
+There is a huge meme about how people do not know how to exit vi based text editors. Both vi and vim have the same basic set of commands, so it isn't difficult to transition between them. A good place to start with vi is vim open a text file like so:
+```
+$ vim text.txt
+```
+
+When you open a file in vim, you start in normal mode. Despite what the name might have you believe, that does not mean that you can edit text. Normal mode is where you enter commands and make larger changes to the text. Normal mode is where all saving, quitting, searching, finding and replacing, yanking and printing happens. To start off however, the command to enter "insert mode" is "i". When you are in insert mode, every key does exactly what you would normally expect it to in this mode. Pressing the "a" key for example will add "a" to the text file and pressing "shift + a" will add an "A" to the text file. Copy and pasting is just like in the terminal while in this mode. To get back to normal mode you press the "esc" key.  
+  
+Once back in normal mode, pretty much all the other basic parts of a text editor are available. In normal mode, pretty much every key does something. The starting point for commands that you can do in normal mode is moving the courser. You can use the arrow keys like normal, but you can also use "hjkl" for directional movement as well. When you are starting, arrow keys are easy to remember so only use "hjkl" if you want to.  
+
+Actually saving a document is a bit different than what you might expect as well. You do not use `ctrl+s` which you might remember as the "save button." Instead, you will be "Writing" your save. To input this kind of command, you input the keys `shift+;`, `w` then `enter`, or more commonly seen as `:w`. To actually quit out of any vi editor, you would use the command `:q`. Now if it seems like these are separate commands, that is correct. The neat part about simple commands like this however, is that it is very easy to combine them like `:wq`. I most often use these two commands together, but there are times when you don't make any changes and you only need to quit, or you may want to write changes and keep editing.  
+
+Vi was not designed with copy and pasting in mind and as such, I will be primarily going over how vi handles copying and pasting differently. First, when you use vi it's not "copying", it's "Yanking". I make this distinction because it is completely different interface. Copy and pasting is for pretty much the whole system, in or out of a text editor. Yanking is completely separate, and you will lose what you have yanked if you quit out of vi. Important distinctions aside, to yank something will require the `y' key. Simply pressing the `y' key is not enough to do anything though. All pressing `y' does is tell vi that you want to "yank" something. The most basic form of yanking is to input `yy`, which will yank the line your courser is on. All you have to do then is press the `p` key where you want that line to "Print" and you have basic copy and pasting. For the sake of brevity, I will not be going over just how powerful this method of copy and pasting is, just know that it get very powerful with practice and an understanding of vi.  
+
+To search for a specific string, you would enter the `:/` and then your string like so:
+```
+:/string
+```
+To go to the next instance of `string`, you would input `n` and `shift + n` to go backwards.  
+
+To find and replace, it is a similar command with with a few extra bits:
+```
+:%s/pattern/replacement/g
+:%s/pattern/replacement/gc
+```
+To get started with this, the `%s` means substitute over the whole file. The `/pattern/replacement/` is what you want to replace and with what. The `g` stands for global and the `c` stands for confirm.  
+
+As you can see, vi has a very high skill floor to get meaningful value out of it. If you take the time to learn the tool, it is noticeably faster than other more modern text editors. Anyone who doesn't believe that should try to use and actually learn vi for a month. Vi may not be for everyone and it is hard to learn, but the rewards for doing so is a really fast text editor.
 
 #### nano
+There are only really two things that you have to know to use nano. First, every command is visible at the bottom of the screen. Second, the `^` symbol means `ctrl+`. Going through each of the basic features, you control your location using arrow key and otherwise enter text as normal. No insert mode, just arrow keys and letters. To save, you input `ctrl + o'. It will prompt you to name the file, but it should just use the name of the file so normally all that you will need to do is press enter. To quit nano, you would use `ctrl + x`.   
+  
+To find a string use `ctrl + w` or the "Where Is" function. To find the next occurrence use `alt + w` and `alt + q` for the previous. For the find and replace, you use the `ctrl + w` again and then you do `ctrl + R` or "Replace". You would then enter the text that you want replaced, hit enter and then the text that you want to replace it with. 
+
+Copy and pasting works just like in the terminal, where you use `ctrl + shift + c` and `ctrl + shift + v` respectively.
 
 
 ### grep 
-#### wildcards 
+The `grep` command stands for "global regular expression print". In practice, `grep` is used on large bodies of text to find regular expressions and prints them out. This is probably one of the five most useful commands to know in linux. Take the following command:
+```
+$ grep VeryLargeTextFile.txt -e "regular expression"
+```
+
+The `-e` indicates that what is in the"  "is what you are looking for. There are many ways that this command can be expanded. Here are some of the ones that I find more useful:
+```
+$ grep VeryLargeTextFile.txt -e "regular expression" -e "Second expression"
+$
+$ grep VeryLargeTextFile.txt LargeTextFile.txt -e "regular expression"
+$
+$ grep VeryLargeTextFile.txt -e "regular expression" -A 1 -B 1
+$
+$ grep VeryLargeTextFile.txt -e "regular expression" -v
+```
+
+The first one makes it so that `grep` is looking for two expressions. The second one has `grep` search two files. These two can be combined together such that you can look for multiple regular expressions across multiple files.  
+
+The flags `-A` and `-B` stand for "After" and "Before", and print extra lines before and after the line with the regular expression. Use either or both to get some of the context around what you are looking for.
+
+The `-v` flag stands for "inVert output", which basically means show everything except the regular expression. If you are a security person, you could use this to check if there are more users than authorized with accounts. Running grep with each allowed name against the available users with the inverted flag will show users that should not exist. Could be helpful if you have a list of authorized users and a list of current users.
+
+
+### wildcards 
+For commands like `ls`, often you will want to limit the output to a general category. A relatively common one for me is only showing text files when using `ls`. Another thing I might want to do is only list `.cpp` and `.hpp` files. In order to make this possible, Linux has a wildcard system for files. The two main wildcards are the `*` and `?`. The `*` means that there could be more than one of any character in this position and the `?` is a single character. So in the earlier examples of when I use wildcards, it looks something like this:
+```
+$ ls *.txt
+$ ls *.?pp
+```
+The first one will only list files that end with `.txt` because the `*` wildcard doesn't care about length. The second will list any file that ends in `.?pp`, which will most likely only be `.hpp` and `.cpp` files but as long as has a dot something pp, it will get output.
 
 ## Intermediate
 
 
 ### uname
 
-The `uname` command is used to find information about the system's operating system and architecture. Most often just include the `-a` flag. The `-a` flag is for displaying all the information `uname` provides. When that is too inconvenient to parse, I usually view the man page to find one particular flag.
+The `uname` command is used to find information about the system's operating system and architecture. Most often just include the `-a' flag. The `-a' flag is for displaying all the information `uname` provides. When that is too inconvenient to parse, I usually view the man page to find one particular flag.
 
 Some of the more frequent flags that would be needed are the following:
 ```
@@ -567,10 +626,7 @@ Once you have switched users and run the needed commands, there are a few ways i
 If you ever forget what user you are currently logged into, running the command `whoami` will output the current user. There is nothing else to this command, it just outputs the user that is currently logged in.
 
 ### Find in man page whoami
-Not all man pages are hard to understand. Some commands are less complicated than others. The `whoami` command is pretty simple, so check out the man page to see that not all man pages are hard to understand. How many different options are there?
-
-#### sudoers  
-Another way to get temporary elevated privileges that does not require switching accounts is to start the command with `sudo` or "Super User DO". It is worth noting that `sudo`, while useful is not on all Unix based systems. It is possible that in the future `sudo` will be replaced with `run0`. For now, I will only be going over sudo because of how prolific it is. It is worth noting that the main reason `sudo` would get replaced is because it is bulky and configuring sudo is not something standard users care about.  
+Not all man pages are hard to understand. Some commands are less complicated than others. The `whoami` command is pretty simple, so check out the man page to see that not all man pages are hard to understand. How many different options are there? 
 
 
 ### /etc  
@@ -579,11 +635,13 @@ The `/etc` directory is where most system configurations are. You already know t
 hostname
 passwd
 sudoers
-timezone
 ```
-The `hostname` file simply contains the hostname of the computer. You probably wont ever need to get the hostname from here, but you can. If you want to change the hostname, this is one of the files that you should expect to change as a result.
+The `hostname` file simply contains the hostname of the computer. You probably wont ever need to get the hostname from here, but you can. If you want to change the hostname, this is one of the files that you should expect to change.
 
-Despite what the file `passwd` might indicate with it's name, it does not contain any passwords in the file. If you forget a password to an account you create, you wont find it here. You will however find all the users that are on the computer. Most of these users you will never log into
+Despite what the file `passwd` might indicate with it's name, it does not contain any passwords in the file. If you forget a password to an account you create, you wont find it here. You will however find all the users that are on the computer. Most of these users you will never log into and are used for system management.  
+
+### sudoers  
+Another way to get temporary elevated privileges that does not require switching accounts is to start the command with `sudo` or "Super User DO". It is worth noting that `sudo`, while useful is not on all Unix based systems. It is possible that in the future `sudo` will be replaced with `doas`. For now, I will only be going over sudo because of how prolific it is. It is worth noting that the main reason `sudo` would get replaced is because it is bulky and configuring sudo is not something standard users care about. 
 
 ### Exercise add user to the sudoers file
 This exercise is going to be a bit different than the others. There is nothing in the `~/exercises` directory for this exercise. I will be telling you exactly what to do for this one, so try to internalize this process. 
@@ -606,18 +664,29 @@ Do make sure that you properly saved the file before exiting.
 
 
 ### /proc
-The `/proc` directory is primarily for processes, but there is some pretty useful information that is worth looking at. 
+The `/proc` directory is primarily for processes, but there is some pretty useful information that is worth looking at. Take the following:
 
 ```
 cpuinfo
 meminfo
-version
 ```
 
-#### warnings about chmod 777 and chown 777
-With great power comes great responsibility. When you are given the power to make any change to the system and the system will let you, it can be easy to expose your computer to danger. Some of the more important commands to look out for are CHange OWNer and CHange MODe (`chown` and `chmod`). If something online says to `chmod` or `chown` a file or directory, be very carful, especially with 777. When you run `ls -l` you get output like this:  
+Both of these files contain some very useful stats related to the cpu and ram respectively. I highly recommend looking at them, especially since the information that is good to know is at the top of both. For `cpuinfo`, towards the top there is a "model name" line. It should be pretty easy to get the rest of of the useful information you would need with just that, but just about every spec you would want is in `cpuinfo`. The top line of `meminfo` is "MemTotal" in kB. If you want to know how much ram you have, you can just go here.
+
+### Exercise grep
+Start in the `/proc/` directory.
+
+a) Use grep to list the lines with "model" in cpuinfo.  
+b) Use grep to list the lines with "id" in cpuinfo.  
+c) Use grep to list the lines with "cpu" in cpuinfo.  
+d) Use grep to list the lines with "id" in cpuinfo.  
+e) Do a-d again but this time print one line above and below.
+f) Do a-d again but this time only print lines without the given word.  
+
+### warnings about chmod 777
+With great power comes great responsibility. When you are given the power to make any change to the system and the system will let you, it can be easy to expose your computer to danger. Some of the more important commands to look out for are CHange OWNer and CHange MODe (`chmod`). If something online says to `chmod` a file or directory, be very carful, especially with 777. When you run `ls -l` you get output like this:  
 drwxrw-r-x  
-This shows what users and groups have access to certain files and directories. If you don't know how to count in binary, the explanation of what the 777. Know that it gives every user access to the file or directory the `chown` or `chmod` command is run on and it poses a significant security risk.
+This shows what users and groups have access to certain files and directories. If you don't know how to count in binary, the explanation of what the 777. Know that it gives every user access to the file or directory the `chmod` command is run on and it poses a significant security risk.
 
 This is how the 777 relates to the permissions:
 ```
@@ -631,8 +700,8 @@ In the same way that three bits has eight combinations of numbers, there are eig
 Starting with `0 = ---` being correct, show on a piece of scratch paper or another device that you can make all 8 combinations of permissions with the following key:   
 1 = x  
 2 = w  
-4 = r 
-
+4 = r  
+     
 0 = ---  
 1 = ---  
 2 = ---  
@@ -644,7 +713,7 @@ Starting with `0 = ---` being correct, show on a piece of scratch paper or anoth
 
 
 ### Basic Networking  
-Linux is often used for it's networking tools. I will briefly go over two of the most important tools for networking on linux: ping and ip.
+Linux is often used for its networking tools. I will briefly go over two of the most important tools for networking on linux: ping and ip.
 
 #### ping  
 ping is used to test connection to a specific IP address. Running commands such as the following is common practice when you are unsure whether or not you are connected to the internet.
@@ -675,7 +744,7 @@ Setting Up a Basic Desktop
 These sections are some of the most useful for learning how to use Linux, I do recommend getting connected to the internet.
 
 ### Find in man page ip
-For this exercise, you don't have to read anything outside of the synopsis. Run the command: `man ip`. I will not go over any of the OPTIONS, so focus on looking at the objects. This is where you will find "address". It doesn't say it in they synopsis, but the "show" from earlier goes in the place of COMMAND. Notice how "help" is also in that same set of {}'s. If you want help with specifically `ip address`, you can run `ip address help`. This changes the default behavior of `show` to `help`.
+For this exercise, you don't have to read anything outside of the synopsis. Run the command: `man ip`. I will not go over any of the OPTIONS, so focus on looking at the objects. This is where you will find "address". It doesn't say it in they synopsis, but the "show" from earlier goes in the place of COMMAND. Notice how "help" is also in that same set of {} 's. If you want help with specifically `ip address`, you can run `ip address help`. This changes the default behavior of `show` to `help`.
 
 
 ### Package manager  
@@ -710,6 +779,7 @@ This exercise will require elevated privileges and can be done anywhere. I recom
 ```
 cmatrix
 sl
+neofetch
 fortune
 cowsay
 ```
@@ -717,6 +787,17 @@ a) Install all four of these packages using `apt install`.
 b) Uninstall the `cmatrix` package. If you decided that you do want it, you can always reinstall it later.
 
 ## Freeform
+At this point, I hope you guys have gotten the idea. Linux has a lot of it's power in the terminal. In this "Freeform" section, I will try to convey how the useful skills can be used in all sorts of interesting ways. Then, if you can set up the GUI, perhaps you will remember the powerful tools available in the terminal. Maybe use the GUI as a tool to make most a lot of tasks easier, but also use the terminal to it's strength.
 
 
+### cowsay and fortune
+Hopefully you can kind of read man pages at this point. Provided you managed to install cowsay and fortune, run the commands:
+```
+$ cowsay "I love man pages"
+$ cowsay -l
+```
+You are not required to look at what that means in the man page, but I believe that it would be a good test of understanding. Good luck to those that want to take up the challenge.  
 
+If you have run the `fortune` command, you may have noticed that it prints fortune cookie type nothings, famous quotes and generally encouraging statements. You may have also noticed that `cowsay` takes text as input. Combine these two commands. If you did the challenge earlier, add that to the combinations as well.
+
+An extra challenge for `fortune` is to make it only print riddles. Then you can also combine it with `cowsay` as well if you want.
