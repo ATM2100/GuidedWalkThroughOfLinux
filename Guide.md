@@ -381,7 +381,7 @@ You would get the following:
 File1 and File5 will match, as will File2 and File6. It's nice and simple and works very similarly to mv in terms of use. Note that the `.` in the destination will imply that you want to keep the name exactly the same.
 
 ### rm 
-The `rm` command is in charge of ReMoving files or essentially deleting them. This tool runs counter to the `touch` and `mkdir` that are in charge of making new files and directories. Know that once you run the `rm` command, you can't take it back is important. There is no ctrl+z, there is no undo and there is no recovering files deleted with rm. Take the following files:
+The `rm` command is in charge of ReMoving files or essentially deleting them. This tool runs counter to the `touch` and `mkdir` that are in charge of making new files and directories. Knowing that once you run the `rm` command, you can't take it back is important. There is no ctrl+z, there is no undo and there is no recovering files deleted with rm. Take the following files:
 ```
 ~/
 |-- Directory1
