@@ -1,5 +1,5 @@
 ### Exercise cd/ls/pwd  
-Once logged onto the Debian vm,   
+Once logged onto the Debian VM,   
 a) print your working directory  
 b) list all the contents of the directory  
 c) then change your directory to the `exercises`   
@@ -20,7 +20,7 @@ $ pwd
 ```
 
 ### Find in Man Page ls
-What does the man page say that the `-a` flag does for the command `ls`? What about the `-l` flag?
+What does the man page say that the `-a' flag does for the command `ls`? What about the `-l` flag?
 
 ```
 -a, --all
@@ -41,7 +41,7 @@ $ cd The/most/Annoying/directory/That/EVER/Existed/Possibly/ever/But/I/Guess/The
 ```
 
 ### Exercise creation
-Start in the `~/exercises/creation/`.  
+Start in the `~/exercises/creation/`. This directory should be empty.
 
 a) create the following files:  
 temp.out  
@@ -69,8 +69,8 @@ $ mv customBashScript.sh bashScript.sh
 ```
 
 ### Find in Man Page tree and ls
-a) If `tree -h` displays the size of a file or directory in a human readable fashion, how would you display it in a human unreadable fashion? (Your looking to print an exact size in bytes)  
-b) The `ls -l` command also lists the size of the file. Another way to show the size of files would be using the `ls -s` command. As you can imagine, the `-s` stands for size. Since tree has a flag to make file sizes human readable, it stands to reason that ls does as well. What is this flag? What other flags would be needed to make use of this human readable flag?
+a) If `tree -h` displays the size of a file or directory in a human-readable fashion, how would you display it in a human-readable fashion? (You're looking to print an exact size in bytes)  
+b) The `ls -l` command lists the file size. Another way to show the size of files would be using the `ls -s' command. As you can imagine, the `-s' stands for size. Since `tree` has a flag to make file sizes human readable, it stands to reason that ls does as well. What is this flag? What other flags would be needed to use this human-readable flag?
 ```
 a) 
 -s     Print the size of each file in bytes along with the name.
@@ -86,10 +86,10 @@ $ ls -sh
 ### Exercise Removing
 Start in `~/exercises/remove/`.  
 
-a) You have decided to delete the directories `There` and `these`. The first thing you should do is get familiar with what you are deleting. You can use `cd` and `ls` until you are sure everything is actually good to delete, or you can just use the `tree` command.   
+a) You have decided to delete the directories `There` and `these`. First, you should get familiar with what you are deleting. You can use `cd` and `ls` until you are sure everything is actually good to delete, or you can just use the `tree` command.   
 b) Remove `notImportant.txt`.    
-c) Remove the `these`, as well as all the subdirectories and files.   
-d) Save a backup of the `VALUABLEfile.txt`, then delete the `There` directory and all it's subdirectories and files.  
+c) Remove the `these` and all the subdirectories and files.   
+d) Save a backup of the `VALUABLEfile.txt`, then delete the `There` directory and all its subdirectories and files.   
 
 ```
 $ tree
@@ -104,8 +104,7 @@ $ cp There/Is/Something/Valuable/Here/VALUABLEfile.txt .
 ```
 
 ### Find in man page rm
-You know that the `-r` and `-f` flags can be dangerous, especially when paired together. Since you already know what these flags do for the `rm` command, look at what the man page has to say about them. Connect how those flags are worded on paper to how dangerous they are in practice.
-
+You know the `-r` and `-f` flags can be dangerous, especially when paired. Since you already know what these flags do for the `rm` command, look at what the man page says about them. Connect how those flags are worded on paper to how dangerous they are in practice.
 ```
     -f, --force
         ignore nonexistent files and arguments, never prompt
@@ -117,10 +116,10 @@ You know that the `-r` and `-f` flags can be dangerous, especially when paired t
 ### Exercise cat and redirection 
 Start in the `~/exercises/catRedirection` directory.
 
-a) Check the contents of `testfile.txt`. I recommend using the `cat` command to see the contents of the file.  
-b) Let's say you decided that you want to add text to the file. In preparation of making a mistake, make a copy of `testfile.txt`. As long as you copy the file to a backup, that is fine, but I recommend that you try and come up with two different ways to copy the file.  
+a) Check the contents of `testfile.txt`. I recommend using the `cat` command to view the file's contents.  
+b) Let's say you decided to add text to the file. In preparation for making a mistake, make a copy of `testfile.txt`. As long as you copy the file to a backup, that is fine, but I recommend that you try to come up with two different ways to copy the file.  
 c) Use the `cat` command and redirection to add text to `testfile.txt`, without deleting anything that is already there. When you are done, don't forget to use `ctrl+c`.  
-d) Use `cat` and redirection to make `testfile.txt` match what ever the backup you made. The end result should be exactly how `testfile.txt` was originally.  
+d) Use `cat` and redirection to make `testfile.txt` match whatever backup you made. The end result should be exactly how `testfile.txt` was originally.   
 
 ```
 $ cat testfile.txt
@@ -138,6 +137,15 @@ what ever you add here is fine, the ">>" is what is important here.
 $
 $ cat testfile-backup.txt > testfile.txt
 ```
+
+### Find in man page uname
+Find and read all three of the `-n -v -p` flags on the man page. Compare those entries to `uname --help` command. Which do you like better? 
+
+```
+
+```
+
+
 ### Find in man page whoami
 Not all man pages are hard to understand. Some commands are less complicated than others. The `whoami` command is pretty simple, so check out the man page to see that not all man pages are hard to understand. How many different options are there?
 
@@ -151,24 +159,24 @@ There are two options available:
 ```
 
 
-### Exercise add user to the sudoers file
-This exercise is going to be a bit different than the others. There is nothing in the `~/exercises` directory for this exercise. I will be telling you exactly what to do for this one, so try to internalize this process. 
+### Exercise add a user to the sudoers file
+This exercise is going to be a bit different than the others. Nothing is in the `~/exercises` directory for this exercise. I will tell you exactly what to do, so try to internalize this process. 
 
-a) run the command `su - root`, the password is "toor", which is just root backwards.  
-b) now that you have elevated privileges, go to the `/etc/` directory.  
-c) use your preferred text editor to edit the `sudoers` file. The two obvious examples are:
+a) Run the command `su - root`.  
+b) now that you have elevated privileges go to the `/etc/` directory.  
+c) Edit the `sudoers` file using your preferred text editor. The two obvious examples are:
 ```
 $ nano sudoers
 $ vim sudoers
 ``` 
-d) I recommend for this exercise that you look for the `root ALL=(ALL:ALL) ALL` line and add `user ALL=(ALL:ALL) ALL`. The end result would look something like this:
+d) I recommend that you look for the `root ALL=(ALL:ALL) ALL` line for this exercise and add `user ALL=(ALL:ALL) ALL`. The end result would look something like this:
 ```
 root ALL=(ALL:ALL) ALL
 user ALL=(ALL:ALL) ALL
 ```
 If you can't find the right line, just add `user ALL=(ALL:ALL) ALL` to the line just above the `@includedir /etc/sudoers.d` line at the bottom of the page.  
 
-Do make sure that you properly saved the file before exiting.
+Make sure that you properly saved the file before exiting.
 ```
 $ su - root
 Password: toor
@@ -182,9 +190,9 @@ Start in the `/proc/` directory.
 
 a) Use grep to list the lines with "model" in cpuinfo.  
 b) Use grep to list the lines with "id" in cpuinfo.  
-c) Use grep to list the lines with "cpu" in cpuinfo. 
-d) Do a-c again but this time print one line above and below.
-e) Do a-c again but this time only print lines without the given word.  
+c) Use grep to list the lines with "cpu" in cpuinfo.  
+d) Do a-c again, but print one line above and below this time.
+e) Do a-c again, but only print lines without the given word this time.   
 
 ```
 $ grep cpuinfo -e "model"
@@ -204,11 +212,11 @@ $ grep cpuinfo -e "cpu" -v
 
 
 ### Exercise 777 meaning
-Starting with `0 = ---` being correct, show on a piece of scratch paper or another device that you can make all 8 combinations of permissions with the following key:  
+Starting with `0 = ---` being correct, show on a piece of scratch paper or another device that you can make all eight combinations of permissions with the following key:   
 1 = x  
 2 = w  
-4 = r 
-
+4 = r  
+     
 0 = ---  
 1 = ---  
 2 = ---  
@@ -230,7 +238,7 @@ Starting with `0 = ---` being correct, show on a piece of scratch paper or anoth
 ```
 
 ### Find in man page ip
-For this exercise, you don't have to read anything outside of the synopsis. Run the command: `man ip`. I will not go over any of the OPTIONS, so focus on looking at the objects. This is where you will find "address". It doesn't say it in they synopsis, but the "show" from earlier goes in the place of COMMAND. Notice how "help" is also in that same set of {}'s. If you want help with specifically `ip address`, you can run `ip address help`. This changes the default behavior of `show` to `help`.
+You don't have to read anything outside of the synopsis for this exercise. Run the command: `man ip`. I will not review any of the OPTIONS, so focus on the objects. This is where you will find "address." The synopsis does not say, but the "show" from earlier goes in the place of COMMAND. Notice how "help" is also in that same set of {} 's. If you want help with specifically `ip address`, you can run `ip address help`. This changes the default behavior of `show` to `help`.
 ```
 SYNOPSIS
        ip [ OPTIONS ] OBJECT { COMMAND | help }
@@ -249,21 +257,19 @@ $ ip address help
 
 
 ### Exercise using apt
-This exercise will require elevated privileges and can be done anywhere. I recommend that before you start installing random packages, you look up what they are and what they do. Here are the packages that I want you to install:
+This exercise will require elevated privileges and can be done anywhere. Before you start installing random packages, I recommend you look up what they are and what they do. Here are the packages that I want you to install:
 ```
 cmatrix
 sl
-fortune
-cowsay
+neofetch
 ```
-a) Install all four of these packages using `apt install`.   
-b) Uninstall the `cmatrix` package. If you decided that you do want it, you can always reinstall it later.
+a) Install all of these packages using `apt install`.   
+b) Uninstall the `cmatrix` package. If you decide you want it, you can reinstall it later.
 
 ```
 $ sudo apt install cmatrix
 $ sudo apt install sl
-$ sudo apt install fortune
-$ sudo apt install cowsay
+$ sudo apt install neofetch
 $
 $ sudo apt remove cmatrix
 ```
@@ -271,16 +277,15 @@ $ sudo apt remove cmatrix
 
 ### cowsay and fortune
 
-For the actual problem:
 ```
-fortune | cowsay
-```
-
-For the `cowsay` challenge:
-```
-fortune | cowsay -f dragon
-```
-For the `fortune` challenge:
-```
-fortune /usr/share/games/fortunes/riddles
+$ sudo apt install fortune
+$ sudo apt install cowsay
+$
+$ fortune | cowsay
+$
+$ fortune | cowsay -f dragon
+$
+$ fortune /usr/share/games/fortunes/riddles | cowsay
+$
+$ fortune /usr/share/games/fortunes/riddles | cowsay -f vader
 ```
