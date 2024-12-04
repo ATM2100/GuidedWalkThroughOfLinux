@@ -22,44 +22,72 @@ Maintenance to the main repository is to be handled directly by me. The project 
 
 # Functional Requirements
 ## Starting point
-### History of Linux
 ### File Structure
+By the end of this section, the user should be able to look at a file path and know which parts of the file path is what.
 ### Autocomplete
+By the end of this section, the user should be able to use auto complete.
 ### Reading the Terminal
+By the end of this section, the user should be able to understand which part of the terminal's command prompt does what.
 ### Man Pages
+By the end of this section, the user should be able to view a man page, scroll up and down as well as exit out of the man page.
 ### pwd
+By the end of this section, the user should be able to print the working directory and understand what that means.
 ### ls
+By the end of this section, the user should be able to use ls and understand the different important flags that ls has.
 ### cd
+By the end of this section, the user should be able to always be able to get to the home directory as well as change directories to anywhere on the system they know about.
 ### touch
+By the end of this section, the user should be able to create empty files.
 ### mkdir
+By the end of this section, the user should be able to make directories and understand what `-p` means.
 ### mv
+By the end of this section, the user should be able to move files on the file system and rename files.
 ### tree
+By the end of this section, the user should be able to understand the difference between tree and ls. 
 ### cp
+By the end of this section, the user should be able to copy files and understand the similarities to `mv`.
 ### rm
+By the end of this section, the user should be able to understand that `rm` is permanent as well as the danger of `-rf`.
 ### clear
-### cat
-### redirection
+By the end of this section, the user should be able to clear the screen.
+### cat and redirection
+By the end of this section, the user should be able to view the contents of files as well as redirect text into files.
 ### piping
+By the end of this section, the user should be able to understand how to pipe one command into another
 ### less
+By the end of this section, the user should be able to see the similarities to man pages.
 ### text editors
+The testers at the end of this section should be able to say which text editor between vim and nano they prefer. 
 
 ## Practical Tools and Files
 ### grep
+By the end of this section, the user should be able to find regular expressions.
 ### wildcards
+By the end of this section, the user should be able to understand what basic wild cards are and what they do.
 ### uname
+By the end of this section, the user should be able to find important information such as host name and processor architecture. 
 ### su
+By the end of this section, the user should be able to switch user.
 ### whoami
+By the end of this section, the user should be able to identify what user they are.
 ### /etc
+By the end of this section, the user should be able to find important configuration files.
 ### /proc
+By the end of this section, the user should be able to find important information regarding the cpu and memory.
 ### sudoers
+By the end of this section, the user should be able to add a user to sudoers.
 ### Warning about chmod 777
+By the end of this section, the user should be able to know what 754 means in the context of chown.
 ### ping
+By the end of this section, the user should be able to ping ip addresses.
 ### ip
+By the end of this section, the user should be able to read the synopsis of it's man page, and understand that it is important for networking.
 ### apt
+By the end of this section, the user should be able to install and remove packages.
 
 
 ## Freeform
-### cowsay
-### fortune
-### combining both
+### cowsay fortune
+By the end of this section, the user should be able to combine two unfamiliar commands.
 ### demonstrate learning of most of the tools
+By the end of this section, the user should be able to read man pages to find vague pieces of information.
