@@ -141,10 +141,6 @@ $ cat testfile-backup.txt > testfile.txt
 ### Find in man page uname
 Find and read all three of the `-n -v -p` flags on the man page. Compare those entries to `uname --help` command. Which do you like better? 
 
-```
-
-```
-
 
 ### Find in man page whoami
 Not all man pages are hard to understand. Some commands are less complicated than others. The `whoami` command is pretty simple, so check out the man page to see that not all man pages are hard to understand. How many different options are there?
